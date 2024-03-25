@@ -8,13 +8,47 @@ import './site.css'
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Root from "./routes/Root";
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
+
+import Root from './routes/Root';
+import Home from "./routes/Home";
+import Events from "./routes/Events";
+import Points from "./routes/Points";
+import Profile from "./routes/Profile";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Root />,
+        children: [
+            {
+                path: "/home",
+                element: <Home />,
+            },
+            {
+                path: "/events",
+                element: <Events />,
+            },
+            {
+                path: "points",
+                element: <Points />,
+            },
+            {
+                path: "profile",
+                element: <Profile />,
+            },
+        ]
+    },
+]);
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <Root></Root>
+        <RouterProvider router={router} />
     </React.StrictMode>
 );

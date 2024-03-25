@@ -1,4 +1,5 @@
 import esnLogo from "../images/img.png"
+import {Link} from "react-router-dom";
 
 const Header = () => {
 
@@ -23,25 +24,27 @@ const Header = () => {
                     <div className="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul className="navbar-nav flex-grow-1">
                             <li className="nav-item align-self-center">
-                                <a className="navbar-brand" href="/"> Points </a>
+                                <Link to="home" className="nav-link text-dark">Home</Link>
                             </li>
                             <li className="nav-item align-self-center">
-                                <a className="navbar-brand" href="/"> Events </a>
+                                <Link to="points" className="nav-link text-dark">Points</Link>
                             </li>
                             <li className="nav-item align-self-center">
-                                <a className="navbar-brand" href="/"> My profile </a>
+                                <Link to="events" className="nav-link text-dark">Events</Link>
+                            </li>
+                            <li className="nav-item align-self-center">
+                                <Link to="profile" className="nav-link text-dark">My profile</Link>
                             </li>
                         </ul>
-
                         <ul className="navbar-nav flex-grow-1">
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="/Home/Privacy"> Privacy </a>
+                                <a className="nav-link text-dark" href="/"> Privacy </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="/Identity/Account/Register"> Register </a>
+                                <a className="nav-link text-dark" href="/"> Register </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="/Identity/Account/Login"> Login </a>
+                                <a className="nav-link text-dark" href="/"> Login </a>
                             </li>
                         </ul>
                     </div>
