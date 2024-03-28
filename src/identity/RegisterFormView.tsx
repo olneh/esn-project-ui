@@ -1,7 +1,9 @@
 import { MouseEvent } from "react";
+import {IRegisterData} from "../dto/IRegisterData";
 
 interface IProps {
     // values: IRegisterData;
+    values: IRegisterData;
 
     validationErrors: string[];
 
@@ -24,7 +26,7 @@ const RegisterFormView = (props: IProps) => {
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
-                    // value={props.values.firstName}
+                    value={props.values.firstName}
                     className="form-control" autoComplete="firstname" aria-required="true" placeholder="FirstName"
                     type="text"
                     id="Input_FirstName" maxLength={128} name="firstName"/>
@@ -34,7 +36,7 @@ const RegisterFormView = (props: IProps) => {
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
-                    // value={props.values.lastName}
+                    value={props.values.lastName}
                     className="form-control" autoComplete="lastname" aria-required="true" placeholder="LastName"
                     type="text"
                     id="Input_LastName" maxLength={128} name="lastName"/>
@@ -44,7 +46,7 @@ const RegisterFormView = (props: IProps) => {
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
-                    // value={props.values.email}
+                    value={props.values.email}
                     className="form-control" autoComplete="username" aria-required="true" placeholder="name@example.com"
                     type="email"
                     id="Input_Email" name="email"/>
@@ -54,7 +56,7 @@ const RegisterFormView = (props: IProps) => {
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
-                    // value={props.values.phone}
+                    value={props.values.phone}
                     className="form-control" autoComplete="username" aria-required="true" placeholder="+372 555 555 55"
                     type="phone"
                     id="Input_Phone" name="phone"/>
@@ -64,7 +66,7 @@ const RegisterFormView = (props: IProps) => {
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
-                    // value={props.values.password}
+                    value={props.values.password}
                     className="form-control" autoComplete="new-password" aria-required="true" placeholder="password"
                     type="password"
                     id="Input_Password" maxLength={100} name="password"/>
@@ -73,7 +75,7 @@ const RegisterFormView = (props: IProps) => {
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
-                    // value={props.values.confirmPassword}
+                    value={props.values.confirmPassword}
                     className="form-control" autoComplete="new-password" aria-required="true" placeholder="password"
                     type="password"
                     id="Input_ConfirmPassword" name="confirmPassword"/>
