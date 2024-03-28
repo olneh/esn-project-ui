@@ -1,10 +1,11 @@
-import esnLogo from "../images/img.png";
+import esnLogo from "../images/ESN star.png";
 
 const Home = () => {
     return (
         <div>
             <div className="text-center">
-                <h1 className="display-4"><img src={esnLogo} alt="esnLogo" height="30"/>Home</h1>
+                <h2><img src={esnLogo} alt="esnLogo" height="30"/>Home</h2>
+                aa
             </div>
         </div>
     )

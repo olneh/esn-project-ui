@@ -1,4 +1,5 @@
-import esnLogo from "../images/img.png"
+import esnStar from "../images/ESN star.png"
+import esnLogo from "../images/ESN logo full.png"
 import {Link} from "react-router-dom";
 
 const Header = () => {
@@ -8,10 +9,10 @@ const Header = () => {
             <nav
                 className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div className="container">
-                    <a className="navbar-brand" href="/">
+                    <a className="navbar-brand" href="/home">
                         <img src={esnLogo} alt="esnLogo" height="30"/>
                     </a>
-                    <span className="navbar-brand fs-sm-3 fs-md-4 fs-lg-5"> ESN Members </span>
+                    <span className="navbar-brand fs-sm-3 fs-md-4 fs-lg-5"> Members </span>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,22 +31,40 @@ const Header = () => {
                                 <Link to="points" className="nav-link text-dark">Points</Link>
                             </li>
                             <li className="nav-item align-self-center">
-                                <Link to="events" className="nav-link text-dark">Events</Link>
+                                <Link to="events" className="nav-link text-dark">Events Helpers</Link>
                             </li>
                             <li className="nav-item align-self-center">
                                 <Link to="profile" className="nav-link text-dark">My profile</Link>
                             </li>
                         </ul>
+
+                            <div className="container-fluid">
+                                <div className="collapse navbar-collapse">
+                                    <ul className="navbar-nav">
+                                        <li className="nav-item dropdown">
+                                            <a className="nav-link dropdown-toggle"
+                                               data-bs-toggle="dropdown"
+                                               aria-expanded="false">
+                                                <img src={esnStar} alt="esnLogo" height="30"/>
+                                            </a>
+                                            <ul className="dropdown-menu dropdown-menu"
+                                                aria-labelledby="navbarDropdownMenuLink">
+                                                <li><Link to="profile" className="dropdown-item">My Profile</Link></li>
+                                                <li><Link to="privacy" className="dropdown-item">Privacy info</Link>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         <ul className="navbar-nav flex-grow-1">
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="/"> Privacy </a>
+                                <Link to="register" className="nav-link text-dark">Register</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-dark" href="/"> Register </a>
+                                <Link to="login" className="nav-link text-dark">Login</Link>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link text-dark" href="/"> Login </a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
