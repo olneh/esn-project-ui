@@ -21,11 +21,19 @@ const Events = () => {
 
     return (
         <div>
-            <h1>Events</h1>
-            <Button variant="primary">Add Event</Button>
-
-
-            <Button variant="primary">Suggest Event</Button>
+            <div className="container">
+                <div className="row">
+                    <div className="col-auto">
+                        <h2>Events</h2>
+                    </div>
+                    <div className="col-auto">
+                        <Button variant="primary">Suggest Event</Button>
+                    </div>
+                    <div className="col-auto">
+                        <Button variant="primary">Add Event</Button>
+                    </div>
+                </div>
+            </div>
 
 
             <body>
