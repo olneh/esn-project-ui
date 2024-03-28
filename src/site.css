@@ -1,11 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Kelson+Sans&display=swap');
+
 html {
     font-size: 40px;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
+/*@media (min-width: 768px) {*/
+/*    html {*/
+/*        font-size: 16px;*/
+/*        */
+/*    }*/
+/*}*/
+
+/* If the screen size is 1200px wide or more, set the font-size to 80px */
+@media (min-width: 1200px) {
+    .responsive-font-example {
+        font-size: 80px;
     }
+}
+/* If the screen size is smaller than 1200px, set the font-size to 80px */
+@media (max-width: 1199.98px) {
+    .responsive-font-example {
+        font-size: 30px;
+    }
+}
+
+button {
+    background-color: #2e3192;
+    /* You can adjust other styles as needed */
+    color: white; /* For text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+img {
+    margin: 1%;
 }
 
 .btn:focus,
@@ -23,7 +52,10 @@ html {
 
 body {
     margin-bottom: 60px;
+    font-family: 'Kelson Sans', sans-serif;
+    /*font-family: 'Comic Sans MS', cursive;*/
 }
+
 
 
 a.navbar-brand {
@@ -38,15 +70,16 @@ a {
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #2e3192;
+
+    border-color: #2e3192;
 }
 
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #2e3192;
+    border-color: #2e3192;
 }
 
 .border-top {

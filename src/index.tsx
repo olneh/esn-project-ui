@@ -18,27 +18,39 @@ import Home from "./routes/Home";
 import Events from "./routes/Events";
 import Points from "./routes/Points";
 import Profile from "./routes/Profile";
+import ErrorPage from "./routes/ErrorPage";
+import Login from "./identity/Login";
+import Register from "./identity/Register";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root />,
+        errorElement: <ErrorPage />,
+        element: <Root/>,
         children: [
             {
                 path: "/home",
-                element: <Home />,
+                element: <Home/>,
             },
             {
                 path: "/events",
-                element: <Events />,
+                element: <Events/>,
             },
             {
                 path: "points",
-                element: <Points />,
+                element: <Points/>,
             },
             {
                 path: "profile",
-                element: <Profile />,
+                element: <Profile/>,
+            },
+            {
+                path: "login/",
+                element: <Login />,
+            },
+            {
+                path: "register/",
+                element: <Register />,
             },
         ]
     },
@@ -49,6 +61,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <RouterProvider router={router}/>
     </React.StrictMode>
 );
