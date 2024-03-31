@@ -1,7 +1,22 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Card, Col, Row } from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
+import {MemberService} from "../services/MemberService";
+import {IMember} from "../entities/IMember";
 
-const Points = () => {
+const MemberPoints = () => {
+    const memberService = new MemberService();
+
+    const [members, setMembers] = useState<IMember[]>([]);
+
+    useEffect(() => {
+        const fetchMembers = async () => {
+            const membersData = await memberService.getAllMembers();
+            setMembers(membersData);
+        };
+        fetchMembers();
+    }, []);
+
     return (
         <>
             <h1>Points</h1>
@@ -19,14 +34,16 @@ const Points = () => {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Marc</td>
-                    <td>President</td>
-                    <td>20. June 1908</td>
-                    <td>44 555 666</td>
-                    <td>president@taltech.ee</td>
-                    <td>404</td>
-                </tr>
+                        {members.map(member => (
+                            <tr>
+                            <td>{member.firstName}</td>
+                            <td>{member.lastName}</td>
+                            <td>{member.birthday ? new Date(member.birthday).toDateString() : null}</td>
+                            <td>{member.phone}</td>
+                            <td>{member.email}</td>
+                            <td>{member.points}</td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
 
@@ -94,4 +111,4 @@ const Points = () => {
 
 }
 
-export default Points;
+export default MemberPoints;
