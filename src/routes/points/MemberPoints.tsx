@@ -1,11 +1,9 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {MemberService} from "../../services/MemberService";
 import {IMember} from "../../entities/IMember";
 import SearchBar from "../SearchBar";
-import {useNavigate} from "react-router-dom";
 
 const MemberPoints = () => {
-    const navigate = useNavigate();
     const memberService = new MemberService();
     const [searchKeyword, setSearchKeyword] = useState<string>('');
 

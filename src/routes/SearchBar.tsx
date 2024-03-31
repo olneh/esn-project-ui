@@ -1,6 +1,4 @@
-import React, {MouseEvent, useState} from "react";
-import {Simulate} from "react-dom/test-utils";
-
+import React from "react";
 
 interface SearchBarProps {
     searchKeyword: string;
