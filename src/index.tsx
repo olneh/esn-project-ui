@@ -16,7 +16,7 @@ import {
 import Root from './routes/Root';
 import Home from "./routes/Home";
 import Events from "./routes/Events";
-import MemberPoints from "./routes/points/MemberPoints";
+import MemberPoints from "./routes/members/MemberPoints";
 import Profile from "./routes/Profile";
 import ErrorPage from "./routes/ErrorPage";
 import Login from "./routes/identity/Login";

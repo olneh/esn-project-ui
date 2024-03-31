@@ -10,7 +10,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchKeyword, setSearchKeyword }
         <>
                 <input
                     type="text"
-                    placeholder="Search by name..."
+                    placeholder="Search..."
                     value={searchKeyword}
                     onChange={(e) => setSearchKeyword(e.target.value)}
                     className="form-control mb-3"
