@@ -1,8 +1,18 @@
+import { createContext, useState } from "react";
+import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import {Outlet} from "react-router-dom";
+import {IJWTResponse} from "../entities/dto/IJWTResponse";
+
+export const JwtContext = createContext<{
+    jwtResponse: IJWTResponse | null,
+    setJwtResponse: ((data: IJWTResponse | null) => void) | null
+}>({ jwtResponse: null, setJwtResponse: null });
 
 const Root = () => {
+
+    const [jwtResponse, setJwtResponse] = useState(null as IJWTResponse | null);
+
 
     return (
         <>

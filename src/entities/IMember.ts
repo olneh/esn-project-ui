@@ -1,7 +1,9 @@
 import {IBaseEntity} from "./IBaseEntity";
 
 export interface IMember extends IBaseEntity{
-    name: string;
+    firstName: string,
+    lastName: string,
+
     birthday?: Date;
     phone?: string;
     email?: string;

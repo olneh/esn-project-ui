@@ -1,8 +1,9 @@
 import { MouseEvent } from "react";
-import {IRegisterData} from "../dto/IRegisterData";
+import {IRegisterData} from "../entities/dto/IRegisterData";
+import {Simulate} from "react-dom/test-utils";
+import change = Simulate.change;
 
 interface IProps {
-    // values: IRegisterData;
     values: IRegisterData;
 
     validationErrors: string[];
@@ -46,13 +47,22 @@ const RegisterFormView = (props: IProps) => {
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
+                    value={props.values.birthday instanceof Date ? props.values.birthday.toISOString().split('T')[0] : ''}
+                    className="form-control" autoComplete="bday" aria-required="true"
+                    type="date"
+                    id="Input_Birthday" name="birthday"/>
+                <label htmlFor="Input_Birthday">Birthday</label>
+            </div>
+
+            <div className="form-floating mb-3">
+                <input
+                    onChange={(e) => props.handleChange(e.target)}
                     value={props.values.email}
                     className="form-control" autoComplete="username" aria-required="true" placeholder="name@example.com"
                     type="email"
                     id="Input_Email" name="email"/>
                 <label htmlFor="Input_Email">Email</label>
             </div>
-
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
@@ -62,7 +72,6 @@ const RegisterFormView = (props: IProps) => {
                     id="Input_Phone" name="phone"/>
                 <label htmlFor="Input_Phone">Phone number</label>
             </div>
-
             <div className="form-floating mb-3">
                 <input
                     onChange={(e) => props.handleChange(e.target)}
@@ -81,6 +90,15 @@ const RegisterFormView = (props: IProps) => {
                     id="Input_ConfirmPassword" name="confirmPassword"/>
                 <label htmlFor="Input_ConfirmPassword">Confirm Password</label>
             </div>
+
+            <label htmlFor="date">Select a Date:</label>
+            <input
+                type="date"
+                id="date"
+                name="date"
+                // value={date} // Bind the date state to the input
+                onChange={(e) => props.handleChange(e.target)}
+            />
 
             <button
                 onClick={(e) => props.onSubmit(e)}

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Kelson+Sans&display=swap');
 
 html {
-    font-size: 40px;
+    /*font-size: 40px;*/
 }
 
 /*@media (min-width: 768px) {*/
@@ -26,11 +26,7 @@ html {
 
 button {
     background-color: #2e3192;
-    /* You can adjust other styles as needed */
-    color: white; /* For text color */
-    border: none; /* Remove border */
-    padding: 10px 20px; /* Adjust padding */
-    border-radius: 5px; /* Add border radius for rounded corners */
+
 }
 
 img {

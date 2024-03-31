@@ -1,10 +1,9 @@
-import { MouseEvent, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import { IRegisterData } from "../../dto/IRegisterData";
-// import { IdentityService } from "../../services/IdentityService";
-// import { JwtContext } from "../Root";
+import {MouseEvent, useContext, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import { JwtContext } from "../routes/Root";
 import RegisterFormView from "./RegisterFormView";
-import {IRegisterData} from "../dto/IRegisterData";
+import {IRegisterData} from "../entities/dto/IRegisterData";
+import {IdentityService} from "../services/IdentityService";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -12,6 +11,7 @@ const Register = () => {
     const [values, setInput] = useState({
         firstName: "Bob",
         lastName: "Bob",
+        // birthday: new Date("2023-01-01"),
         email: "a@a.re",
         phone: "+37255544433",
         password: "bobbobbbb11111.K",
@@ -24,12 +24,13 @@ const Register = () => {
         // debugger;
         // console.log(target.name, target.value, target.type)
 
-        setInput({ ...values, [target.name]: target.value });
+        setInput({...values, [target.name]: target.value});
     }
 
-    // const {jwtResponse, setJwtResponse} = useContext(JwtContext);
+    const {jwtResponse, setJwtResponse} = useContext(JwtContext);
 
-    // const identityService = new IdentityService();
+
+    const identityService = new IdentityService();
 
     const onSubmit = async (event: MouseEvent) => {
         console.log('onSubmit', event);
@@ -46,7 +47,7 @@ const Register = () => {
             setValidationErrors(["Bad input values!"]);
             return;
         }
-        if ( values.email.length == 0 ||
+        if (values.email.length == 0 ||
             values.password != values.confirmPassword) {
             setValidationErrors(["Bad password values! Password should be at least one char long and passwords should be equal!"]);
             return;
@@ -59,20 +60,25 @@ const Register = () => {
         // remove errors
         setValidationErrors([]);
 
-        // var jwtData = await identityService.register(values);
+        console.log("Values" + values);
 
-        // if (jwtData == undefined) {
-        //     setValidationErrors(["no jwt || or some wrong data input"]);
-        //     return;
-        // }
 
-       //  if (setJwtResponse){
-       //      setJwtResponse(jwtData);
-       //      navigate("/");
-       // }
+        var jwtData = await identityService.register(values);
+        console.log("JWT data" + jwtData?.jwt + jwtData?.refreshToken)
+
+        if (jwtData == undefined) {
+            setValidationErrors(["no jwt || or some wrong data input"]);
+            return;
+        }
+
+         if (setJwtResponse){
+             setJwtResponse(jwtData);
+             navigate("/");
+        }
     }
     return (
-        <RegisterFormView values={values} handleChange={handleChange} onSubmit={onSubmit} validationErrors={validationErrors} />
+        <RegisterFormView values={values} handleChange={handleChange} onSubmit={onSubmit}
+                          validationErrors={validationErrors}/>
     );
 }
 export default Register;
