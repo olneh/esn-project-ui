@@ -1,11 +1,13 @@
 export interface IRegisterData {
     firstName: string,
     lastName: string,
-    birthday?: Date;
 
-    email: string,
+    birthday?: Date;
     phone: string,
+    email: string,
+
+    points?: number,
+
     password: string,
     confirmPassword: string,
-
 }

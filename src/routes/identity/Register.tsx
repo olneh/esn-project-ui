@@ -1,9 +1,9 @@
 import {MouseEvent, useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import { JwtContext } from "../routes/Root";
+import { JwtContext } from "../Root";
 import RegisterFormView from "./RegisterFormView";
-import {IRegisterData} from "../entities/dto/IRegisterData";
-import {IdentityService} from "../services/IdentityService";
+import {IRegisterData} from "../../entities/registration/IRegisterData";
+import {IdentityService} from "../../services/IdentityService";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -69,11 +69,11 @@ const Register = () => {
         if (jwtData == undefined) {
             setValidationErrors(["no jwt || or some wrong data input"]);
             return;
-        }
-
-         if (setJwtResponse){
-             setJwtResponse(jwtData);
-             navigate("/");
+        } else {
+            if (setJwtResponse) {
+                setJwtResponse(jwtData);
+            }
+            navigate("/login/");
         }
     }
     return (

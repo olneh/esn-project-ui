@@ -16,11 +16,11 @@ import {
 import Root from './routes/Root';
 import Home from "./routes/Home";
 import Events from "./routes/Events";
-import Points from "./routes/Points";
+import MemberPoints from "./routes/MemberPoints";
 import Profile from "./routes/Profile";
 import ErrorPage from "./routes/ErrorPage";
-import Login from "./identity/Login";
-import Register from "./identity/Register";
+import Login from "./routes/identity/Login";
+import Register from "./routes/identity/Register";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "points",
-                element: <Points/>,
+                element: <MemberPoints/>,
             },
             {
                 path: "profile",

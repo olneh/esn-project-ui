@@ -1,5 +1,5 @@
 import { MouseEvent } from "react";
-import {IRegisterData} from "../entities/dto/IRegisterData";
+import {IRegisterData} from "../../entities/registration/IRegisterData";
 import {Simulate} from "react-dom/test-utils";
 import change = Simulate.change;
 

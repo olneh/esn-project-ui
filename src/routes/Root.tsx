@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import {IJWTResponse} from "../entities/dto/IJWTResponse";
+import {IJWTResponse} from "../entities/registration/IJWTResponse";
 
 export const JwtContext = createContext<{
     jwtResponse: IJWTResponse | null,
