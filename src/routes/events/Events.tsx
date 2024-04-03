@@ -12,6 +12,7 @@ const Events = () => {
     const eventService = new EventService();
     const [searchKeyword, setSearchKeyword] = useState('');
     const [events, setEvents] = useState<IEvent[]>([]);
+    const [showModal, setShowModal] = useState(false); // State to control modal visibility
     const [values, setInput] = useState<IEvent>({
         eventTitle: 'Community Clean-Up',
         eventDate: new Date('2023-04-15'),
@@ -40,7 +41,7 @@ const Events = () => {
         }
     };
 
-    const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (values.eventTitle.length === 0) {
             setValidationErrors(["Event title is required."]);
@@ -49,11 +50,19 @@ const Events = () => {
         setValidationErrors([]);
         try {
             await eventService.register(values);
-            // navigate('/');
+            setShowModal(false); // Close the modal after submit
+            // navigate('/'); // Redirect if needed
         } catch (error) {
             console.error("Registration failed", error);
         }
     };
+
+    // Function to show the modal
+    const handleShowModal = () => setShowModal(true);
+
+    // Function to hide the modal
+    const handleHideModal = () => setShowModal(false)
+
 
     return (
         <div className="container">
@@ -61,15 +70,16 @@ const Events = () => {
                 <div className="col-auto">
                     <h2>Events</h2>
                 </div>
+                {/*TODO add vs suggest logic*/}
                 <div className="col-auto">
-                    <Button variant="primary">Suggest Event</Button>
+                    <Button variant="primary" onClick={handleShowModal}>Suggest Event</Button>
                 </div>
                 <div className="col-auto">
-                    <Button variant="primary">Add Event</Button>
+                    <Button variant="primary" onClick={handleShowModal}>Add Event</Button>
                 </div>
             </div>
             <EventTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events}/>
-            <EventsRegistrationFormView handleChange={handleChange} onSubmit={onSubmit} values={values}/>
+            <EventsRegistrationFormView show={showModal} onHide={handleHideModal} values={values} handleChange={handleChange} onSubmit={onSubmit}/>
         </div>
     );
 };

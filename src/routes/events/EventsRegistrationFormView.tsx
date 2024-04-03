@@ -1,74 +1,82 @@
-import { MouseEvent, ChangeEvent } from "react";
+import React, { Component, ChangeEvent, MouseEvent } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
 import { IEvent } from "../../entities/IEvent";
 
 interface IProps {
+    show: boolean;
+    onHide: () => void;
     values: IEvent;
     handleChange: (target: EventTarget & (HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement)) => void;
-    onSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+    onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
-
-const EventsRegistrationFormView = ({ values, handleChange, onSubmit }: IProps) => {
-    return (
-        <form className="form-signin w-100 m-auto" onSubmit={(e) => e.preventDefault()}>
-            <h3>Register New Event</h3>
-            <hr/>
-            <div className="form-floating mb-3">
-                <input type="text" id="Input_EventTitle" name="eventTitle" maxLength={128}
-                       className="form-control" value={values.eventTitle}
-                       onChange={(e) => handleChange(e.target)}
-                       placeholder="Event Title"/>
-                <label htmlFor="Input_EventTitle">Event Title</label>
-            </div>
-
-            <div className="form-floating mb-3">
-                <input
-                    onChange={(e) => handleChange(e.target)}
-                    value={values.eventDate instanceof Date ? values.eventDate.toISOString().split('T')[0] : ''}
-                    className="form-control" autoComplete="bday" aria-required="true"
-                    type="date"
-                    id="Input_Birthday" name="birthday"/>
-                <label htmlFor="Input_Birthday">Birthday</label>
-            </div>
-
-            <div className="form-floating mb-3">
-                <select id="Input_AttendanceType" name="attendanceType"
-                        className="form-control" value={values.attendanceType}
-                        onChange={(e) => handleChange(e.target)}
-                >
-                    <option value="Open">Open</option>
-                    <option value="Closed">Closed</option>
-                    <option value="RSVP">RSVP</option>
-                </select>
-                <label htmlFor="Input_AttendanceType">Attendance Type</label>
-            </div>
-            <div className="form-floating mb-3">
-                <input type="text" id="Input_Comment" name="comment" maxLength={256}
-                       className="form-control" value={values.comment}
-                       onChange={(e) => handleChange(e.target)}
-                       placeholder="Additional Comments"/>
-                <label htmlFor="Input_Comment">Additional Comments</label>
-            </div>
-
-            <div className="form-floating mb-3">
-    <textarea id="Input_Comment" name="comment" maxLength={256}
-              className="form-control" value={values.comment}
-              onChange={(e) => handleChange(e.target)}
-              placeholder="Additional Comments" style={{height: '100px'}}></textarea>
-                <label htmlFor="Input_Comment">Additional Comments</label>
-            </div>
-
-            <div className="form-floating mb-3">
-                <input type="number" id="Input_HelpersNeeded" name="helpersNeeded"
-                       className="form-control" value={values.helpersNeeded.toString()}
-                       onChange={(e) => handleChange(e.target)}
-                       placeholder="Number of Helpers Needed" min="0"/>
-                <label htmlFor="Input_HelpersNeeded">Number of Helpers Needed</label>
-            </div>
-            <button type="button" onClick={onSubmit} className="w-100 btn btn-lg btn-primary">Register</button>
-
-        </form>
-
-    );
-}
+const EventsRegistrationFormView = ({ show, onHide, values, handleChange, onSubmit }: IProps) => {
+        return (
+            <Modal show={show} onHide={onHide} centered>
+                <Form onSubmit={onSubmit}>
+                <Modal.Header closeButton>
+                        <Modal.Title>Register New Event</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Group className="mb-3" controlId="eventTitle">
+                            <Form.Label>Event Title</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="eventTitle"
+                                value={values.eventTitle}
+                                onChange={(e) => handleChange(e.target as EventTarget & HTMLInputElement)}
+                                placeholder="Enter event title"
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="eventDate">
+                            <Form.Label>Event Date</Form.Label>
+                            <Form.Control
+                                type="date"
+                                name="eventDate"
+                                value={values.eventDate ? values.eventDate.toISOString().split('T')[0] : ''}
+                                onChange={(e) => handleChange(e.target as EventTarget & HTMLInputElement)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="attendanceType">
+                            <Form.Label>Attendance Type</Form.Label>
+                            <Form.Control
+                                as="select"
+                                name="attendanceType"
+                                value={values.attendanceType}
+                                onChange={(e) => handleChange(e.target as unknown as EventTarget & HTMLSelectElement)}
+                            >
+                                <option value="Open">Open</option>
+                                <option value="Closed">Closed</option>
+                                <option value="RSVP">RSVP</option>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="comment">
+                            <Form.Label>Additional Comments</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                name="comment"
+                                value={values.comment}
+                                onChange={(e) => handleChange(e.target as EventTarget & HTMLTextAreaElement)}
+                                placeholder="Additional comments"
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="helpersNeeded">
+                            <Form.Label>Number of Helpers Needed</Form.Label>
+                            <Form.Control
+                                type="number"
+                                name="helpersNeeded"
+                                value={values.helpersNeeded.toString()}
+                                onChange={(e) => handleChange(e.target as EventTarget & HTMLInputElement)}
+                                min="0"
+                            />
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={onHide}>Close</Button>
+                        <Button variant="primary" type="submit">Submit</Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal>
+        );
+    }
 
 export default EventsRegistrationFormView;
