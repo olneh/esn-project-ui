@@ -1,4 +1,10 @@
 import { Button } from 'react-bootstrap';
+import {MemberService} from "../../services/MemberService";
+import {useEffect, useState} from "react";
+import {IMember} from "../../entities/IMember";
+import {EventService} from "../../services/EventService";
+import {IEvent} from "../../entities/IEvent";
+import EventTableView from "./EventTableView";
 
 const sampleEvents = [
     {
@@ -19,6 +25,21 @@ const sampleEvents = [
 
 const Events = () => {
 
+    const eventService = new EventService();
+    const [searchKeyword, setSearchKeyword] = useState<string>('');
+
+    const [events, setEvents] = useState<IEvent[]>([]);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const eventData = await eventService.getAllEvents();
+            setEvents(eventData);
+        };
+        fetchEvents();
+    }, []);
+
+
+
     return (
         <div>
             <div className="container">
@@ -35,31 +56,8 @@ const Events = () => {
                 </div>
             </div>
 
+            <EventTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events}/>
 
-            <body>
-            <table className="table table-striped">
-                <thead>
-                <tr>
-                    <th>Event Title</th>
-                    <th>Date</th>
-                    <th>Attendance Type</th>
-                    <th>Comment</th>
-                    <th>Helpers Needed</th>
-                </tr>
-                </thead>
-                <tbody>
-                {sampleEvents.map((event, index) => (
-                    <tr key={index}>
-                        <td>{event.eventTitle}</td>
-                        <td>{event.date.toLocaleString()}</td>
-                        <td>{event.attendanceType}</td>
-                        <td>{event.comment}</td>
-                        <td>{event.helpersNeeded}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            </body>
 
         </div>
     );
