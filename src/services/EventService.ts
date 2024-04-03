@@ -21,4 +21,20 @@ export class EventService extends BaseService {
         }
     }
 
+    async register(data: IEvent): Promise<IEvent | undefined> {
+        try {
+            const response = await this.axios.post<IEvent>('addEvent', data);
+            console.log("data")
+            console.log(data)
+            if (response.status === 200) {
+                return response.data;
+            }
+            return undefined;
+
+        } catch (e) {
+            console.log('error: ', (e as Error).message);
+            return undefined;
+        }
+    }
+
 }
