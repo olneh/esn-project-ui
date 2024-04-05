@@ -1,4 +1,4 @@
-import {Button} from 'react-bootstrap';
+import {Button, Col, Container, Row} from 'react-bootstrap';
 import React, {useContext, useEffect, useState} from "react";
 import {IEvent} from "../../entities/IEvent";
 import {EventService} from "../../services/EventService";
@@ -65,22 +65,19 @@ const Events = () => {
 
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-auto">
+        <Container>
+            <Row className="align-items-center my-3">
+                <Col>
                     <h2>Events</h2>
-                </div>
-                {/*TODO add vs suggest logic*/}
-                <div className="col-auto">
-                    <Button variant="primary" onClick={handleShowModal}>Suggest Event</Button>
-                </div>
-                <div className="col-auto">
+                </Col>
+                <Col xs="auto" className="ms-auto">
+                    <Button variant="primary" onClick={handleShowModal} className="me-2">Suggest Event</Button>
                     <Button variant="primary" onClick={handleShowModal}>Add Event</Button>
-                </div>
-            </div>
-            <EventTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events}/>
-            <EventsRegistrationFormView show={showModal} onHide={handleHideModal} values={values} handleChange={handleChange} onSubmit={onSubmit}/>
-        </div>
+                </Col>
+            </Row>
+            <EventTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events} />
+            <EventsRegistrationFormView show={showModal} onHide={handleHideModal} values={values} handleChange={handleChange} onSubmit={onSubmit} />
+        </Container>
     );
 };
 
