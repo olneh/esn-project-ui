@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {IMember} from "../../entities/IMember";
+import {EMonths} from "../../enums/EMonths";
 
 interface MemberBirthdayTableViewProps {
     searchKeyword: string;
@@ -7,10 +8,9 @@ interface MemberBirthdayTableViewProps {
     members: IMember[];
 }
 
-const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-];
+// const monthNames = Object.keys(EMonths);
+const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
 
 const MemberBirthdayTableView: React.FC<MemberBirthdayTableViewProps> = ({
                                                                              searchKeyword,
@@ -74,7 +74,7 @@ const MemberBirthdayTableView: React.FC<MemberBirthdayTableViewProps> = ({
                         <tr key={member.id}>
                             <td>{member.firstName}</td>
                             <td>{member.lastName}</td>
-                            <td>{member.birthday ? new Date(member.birthday).toDateString() : 'N/A'}</td>
+                            <td>{member.birthday ? `${new Date(member.birthday).getDate()} ${EMonths[new Date(member.birthday).getMonth()]}` : 'N/A'}</td>
                             <td>{member.phone}</td>
                             <td>{member.email}</td>
                             <td>{member.points}</td>
