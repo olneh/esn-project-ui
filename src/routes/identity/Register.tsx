@@ -1,6 +1,6 @@
 import {MouseEvent, useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import { JwtContext } from "../Root";
+import {JwtContext} from "../Root";
 import RegisterFormView from "./RegisterFormView";
 import {IRegisterData} from "../../entities/registration/IRegisterData";
 import {IdentityService} from "../../services/IdentityService";
@@ -11,32 +11,33 @@ const Register = () => {
     const [values, setInput] = useState({
         firstName: "Bob",
         lastName: "Bob",
-        // birthday: new Date("2023-01-01"),
+        birthday: new Date("2023-01-01"),
         email: "a@a.re",
         phone: "+37255544433",
-        password: "bobbobbbb11111.K",
-        confirmPassword: "bobbobbbb11111.K",
+        password: "passw0rd",
+        confirmPassword: "passw0rd",
     } as IRegisterData);
 
     const [validationErrors, setValidationErrors] = useState([] as string[]);
 
     const handleChange = (target: EventTarget & HTMLInputElement) => {
-        // debugger;
-        // console.log(target.name, target.value, target.type)
-
-        setInput({...values, [target.name]: target.value});
+        if (target.name === 'birthday') {
+            const newDate = new Date(target.value);
+            setInput({...values, [target.name]: newDate});
+        } else {
+            setInput({...values, [target.name]: target.value});
+        }
     }
 
     const {jwtResponse, setJwtResponse} = useContext(JwtContext);
 
-
     const identityService = new IdentityService();
 
     const onSubmit = async (event: MouseEvent) => {
+        event.preventDefault();
         console.log('onSubmit', event);
         // console.log("values")
         // console.log(values)
-        event.preventDefault();
 
         // error check functions
         if (values.firstName.length == 0 ||
@@ -53,7 +54,8 @@ const Register = () => {
             return;
         }
         if (values.firstName.length == 0 ||
-            values.lastName.length == 0) {
+            values.lastName.length == 0
+        ) {
             setValidationErrors(["Bad input values! Write your first and last name!"]);
             return;
         }
@@ -63,22 +65,25 @@ const Register = () => {
         console.log("Values" + values);
 
 
+
+        //register the user, get jwt and refresh token
         var jwtData = await identityService.register(values);
         console.log("JWT data" + jwtData?.jwt + jwtData?.refreshToken)
 
         if (jwtData == undefined) {
-            setValidationErrors(["no jwt || or some wrong data input"]);
-            return;
+            setValidationErrors(["no jwt"]);
         } else {
-            if (setJwtResponse) {
-                setJwtResponse(jwtData);
-            }
-            navigate("/login/");
+            setValidationErrors([jwtData.jwt + "it is not undefined"])
+            // if (setJwtResponse) {
+            //     setJwtResponse(jwtData);
+            // }
+            // navigate("/login/");
         }
+
     }
-    return (
-        <RegisterFormView values={values} handleChange={handleChange} onSubmit={onSubmit}
-                          validationErrors={validationErrors}/>
-    );
+return (
+    <RegisterFormView values={values} handleChange={handleChange} onSubmit={onSubmit}
+                      validationErrors={validationErrors}/>
+);
 }
 export default Register;

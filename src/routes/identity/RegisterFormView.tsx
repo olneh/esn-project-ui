@@ -1,7 +1,5 @@
 import { MouseEvent } from "react";
 import {IRegisterData} from "../../entities/registration/IRegisterData";
-import {Simulate} from "react-dom/test-utils";
-import change = Simulate.change;
 
 interface IProps {
     values: IRegisterData;
@@ -90,15 +88,6 @@ const RegisterFormView = (props: IProps) => {
                     id="Input_ConfirmPassword" name="confirmPassword"/>
                 <label htmlFor="Input_ConfirmPassword">Confirm Password</label>
             </div>
-
-            <label htmlFor="date">Select a Date:</label>
-            <input
-                type="date"
-                id="date"
-                name="date"
-                // value={date} // Bind the date state to the input
-                onChange={(e) => props.handleChange(e.target)}
-            />
 
             <button
                 onClick={(e) => props.onSubmit(e)}
