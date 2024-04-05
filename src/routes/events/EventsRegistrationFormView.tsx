@@ -1,6 +1,7 @@
 import React, { Component, ChangeEvent, MouseEvent } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { IEvent } from "../../entities/IEvent";
+import {EAttendanceType} from "../../enums/EAttendanceType";
 
 interface IProps {
     show: boolean;
@@ -44,9 +45,9 @@ const EventsRegistrationFormView = ({ show, onHide, values, handleChange, onSubm
                                 value={values.attendanceType}
                                 onChange={(e) => handleChange(e.target as unknown as EventTarget & HTMLSelectElement)}
                             >
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
-                                <option value="RSVP">RSVP</option>
+                                {Object.values(EAttendanceType).map((type) => (
+                                    <option key={type} value={type}>{type}</option>
+                                ))}
                             </Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="comment">
