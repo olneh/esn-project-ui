@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import { Outlet } from "react-router-dom";
+import {createContext, useState} from "react";
+import {Outlet} from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import {IJWTResponse} from "../entities/registration/IJWTResponse";
@@ -7,7 +7,7 @@ import {IJWTResponse} from "../entities/registration/IJWTResponse";
 export const JwtContext = createContext<{
     jwtResponse: IJWTResponse | null,
     setJwtResponse: ((data: IJWTResponse | null) => void) | null
-}>({ jwtResponse: null, setJwtResponse: null });
+}>({jwtResponse: null, setJwtResponse: null});
 
 const Root = () => {
 
@@ -15,7 +15,8 @@ const Root = () => {
 
 
     return (
-        <>
+        <JwtContext.Provider value={{jwtResponse, setJwtResponse}}>
+
             <Header/>
 
             <div className="container">
@@ -25,7 +26,8 @@ const Root = () => {
             </div>
 
             <Footer/>
-        </>
+        </JwtContext.Provider>
+
     );
 }
 
