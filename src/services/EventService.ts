@@ -37,4 +37,29 @@ export class EventService extends BaseService {
         }
     }
 
+    async update(eventId: string, data: Partial<IEvent>): Promise<IEvent | undefined> {
+        try {
+            const response = await this.axios.put<IEvent>(`updateEvent/${eventId}`, data);
+            if (response.status === 200) {
+                return response.data;
+            }
+            return undefined;
+        } catch (e) {
+            console.log('error:', (e as Error).message);
+            return undefined;
+        }
+    }
+
+    async deleteEvent(postId: string): Promise<boolean> {
+        try {
+            const response = await this.axios.delete<boolean>(`deleteEvent/${postId}`);
+            if (response.status === 200) {
+                return true;
+            }
+            return false;
+        } catch (e) {
+            console.log('error:', (e as Error).message);
+            return false;
+        }
+    }
 }

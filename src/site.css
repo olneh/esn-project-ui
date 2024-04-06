@@ -4,13 +4,6 @@ html {
     /*font-size: 40px;*/
 }
 
-/*@media (min-width: 768px) {*/
-/*    html {*/
-/*        font-size: 16px;*/
-/*        */
-/*    }*/
-/*}*/
-
 /* If the screen size is 1200px wide or more, set the font-size to 80px */
 @media (min-width: 1200px) {
     .responsive-font-example {
@@ -24,9 +17,23 @@ html {
     }
 }
 
+.btn-info {
+    background-color: #00aeef;
+    border-color: #00aeef;
+}
+
+.event-day {
+    background-color: rgba(146, 46, 86, 0.24) !important;
+    color: #ffffff !important;
+}
+
+.btn-danger:hover {
+    background-color: #ec008c ;
+    border-color: #ec008c;
+}
+
 button {
     background-color: #2e3192;
-
 }
 
 img {

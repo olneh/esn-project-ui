@@ -1,21 +1,20 @@
-import {Button, Col, Container, Row} from 'react-bootstrap';
-import React, {useContext, useEffect, useState} from "react";
-import {IEvent} from "../../entities/IEvent";
-import {EventService} from "../../services/EventService";
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { IEvent } from "../../entities/IEvent";
+import { EventService } from "../../services/EventService";
 import EventTableView from "./EventTableView";
 import EventsRegistrationFormView from "./EventsRegistrationFormView";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Events = () => {
     const navigate = useNavigate();
-    // const { jwtResponse, setJwtResponse } = useContext(JwtContext);
     const eventService = new EventService();
     const [searchKeyword, setSearchKeyword] = useState('');
     const [events, setEvents] = useState<IEvent[]>([]);
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
     const [values, setInput] = useState<IEvent>({
         eventTitle: 'Community Clean-Up',
-        eventDate: new Date('2023-04-15'),
+        eventDate: new Date(),
         attendanceType: 'Open',
         comment: 'Bring gloves and wear comfortable shoes.',
         helpersNeeded: 5,
@@ -50,19 +49,20 @@ const Events = () => {
         setValidationErrors([]);
         try {
             await eventService.register(values);
-            setShowModal(false); // Close the modal after submit
-            // navigate('/'); // Redirect if needed
+            setShowModal(false);
+            window.location.reload();
         } catch (error) {
             console.error("Registration failed", error);
         }
     };
 
-    // Function to show the modal
+    const onDeleteEvent = async (eventId: string) => {
+        await eventService.deleteEvent(eventId);
+        setEvents(events.filter(event => event.id !== eventId));
+    };
+
     const handleShowModal = () => setShowModal(true);
-
-    // Function to hide the modal
-    const handleHideModal = () => setShowModal(false)
-
+    const handleHideModal = () => setShowModal(false);
 
     return (
         <Container>
@@ -75,7 +75,7 @@ const Events = () => {
                     <Button variant="primary" onClick={handleShowModal}>Add Event</Button>
                 </Col>
             </Row>
-            <EventTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events} />
+            <EventTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events}  onDeleteEvent={onDeleteEvent}/>
             <EventsRegistrationFormView show={showModal} onHide={handleHideModal} values={values} handleChange={handleChange} onSubmit={onSubmit} />
         </Container>
     );
