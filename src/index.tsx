@@ -21,6 +21,7 @@ import Profile from "./routes/Profile";
 import ErrorPage from "./routes/ErrorPage";
 import Login from "./routes/identity/Login";
 import Register from "./routes/identity/Register";
+import Birthday from "./routes/birthday/Birthday";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: "/home",
                 element: <Home/>,
+            },
+            {
+                path: "/birthdays",
+                element: <Birthday/>,
             },
             {
                 path: "/events",

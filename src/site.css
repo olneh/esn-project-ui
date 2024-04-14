@@ -10,6 +10,7 @@ html {
         font-size: 80px;
     }
 }
+
 /* If the screen size is smaller than 1200px, set the font-size to 80px */
 @media (max-width: 1199.98px) {
     .responsive-font-example {
@@ -17,23 +18,50 @@ html {
     }
 }
 
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevents the left-column and events-container from wrapping */
+}
+
+.left-column {
+    flex: 0 0 20%;
+    margin-right: 20px; /* Adjust the space as needed */
+}
+
+.events-container {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+    margin-left: 20px; /* Adjust the space as needed */
+}
+
+
+.event-card {
+    flex: 1 1 200px; /* Adjust this basis according to how wide you want each card to be */
+    /* Additional styling for individual event cards */
+}
+
+
 .btn-info {
     background-color: #00aeef;
     border-color: #00aeef;
 }
 
-.event-day {
-    background-color: rgba(146, 46, 86, 0.24) !important;
-    color: #ffffff !important;
+button.event-day {
+    background-color: rgba(146, 46, 86, 0.24);
+    color: #ffffff;
 }
 
 .btn-danger:hover {
-    background-color: #ec008c ;
+    background-color: #ec008c;
     border-color: #ec008c;
 }
 
 button {
     background-color: #2e3192;
+    margin: 1px;
 }
 
 img {
@@ -60,7 +88,6 @@ body {
 }
 
 
-
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -79,7 +106,7 @@ a {
 }
 
 .nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
+.nav-pills .show > .nav-link {
     color: #fff;
     background-color: #2e3192;
     border-color: #2e3192;
@@ -118,6 +145,7 @@ button.accept-policy {
     -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
     -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
 }
+
 .card {
     position: relative;
     display: flex;
@@ -133,6 +161,7 @@ button.accept-policy {
 .card .card-header.no-border {
     border: 0;
 }
+
 .card .card-header {
     background: none;
     padding: 0 0.9375rem;
@@ -141,14 +170,15 @@ button.accept-policy {
     align-items: center;
     min-height: 50px;
 }
+
 .card-header:first-child {
     border-radius: calc(8px - 1px) calc(8px - 1px) 0 0;
 }
-body{
-    background: #F4F7FD;
-    margin-top:20px;
-}
 
+body {
+    background: #F4F7FD;
+    margin-top: 20px;
+}
 
 
 .lesson-heading {

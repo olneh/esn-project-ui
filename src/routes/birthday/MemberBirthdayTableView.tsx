@@ -64,9 +64,9 @@ const MemberBirthdayTableView: React.FC<MemberBirthdayTableViewProps> = ({
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Birthday 🎂</th>
-                        <th scope="col">Phone Number 📱</th>
-                        <th scope="col">Email 💌</th>
-                        <th scope="col">Points 🌟</th>
+                        {/*<th scope="col">Phone Number 📱</th>*/}
+                        {/*<th scope="col">Email 💌</th>*/}
+                        {/*<th scope="col">Points 🌟</th>*/}
                     </tr>
                     </thead>
                     <tbody>
@@ -75,9 +75,9 @@ const MemberBirthdayTableView: React.FC<MemberBirthdayTableViewProps> = ({
                             <td>{member.firstName}</td>
                             <td>{member.lastName}</td>
                             <td>{member.birthday ? `${new Date(member.birthday).getDate()} ${EMonths[new Date(member.birthday).getMonth()]}` : 'N/A'}</td>
-                            <td>{member.phone}</td>
-                            <td>{member.email}</td>
-                            <td>{member.points}</td>
+                            {/*<td>{member.phone}</td>*/}
+                            {/*<td>{member.email}</td>*/}
+                            {/*<td>{member.points}</td>*/}
                         </tr>
                     ))}
                     </tbody>
