@@ -10,66 +10,54 @@ const Header = () => {
                 className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div className="container">
                     <a className="navbar-brand" href="/home">
-                        <img src={esnLogo} alt="esnLogo" height="30"/>
+                        <img src={esnLogo} alt="ESN Logo" height="30"/>
                     </a>
-                    <span className="navbar-brand fs-sm-3 fs-md-4 fs-lg-5"> Members </span>
-
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            data-bs-target="#navbarToggler" aria-controls="navbarToggler"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-
-                    <ul className="navbar-nav flex-grow-1"></ul>
-
-                    <div className="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul className="navbar-nav flex-grow-1">
-                            <li className="nav-item align-self-center">
-                                <Link to="home" className="nav-link text-dark">Home</Link>
+                    <div className="collapse navbar-collapse" id="navbarToggler">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link to="home" className="nav-link text-dark">🏠 Home</Link>
                             </li>
-                            <li className="nav-item align-self-center">
-                                <Link to="points" className="nav-link text-dark">Points</Link>
+                            <li className="nav-item">
+                                <Link to="profile" className="nav-link text-dark">👤 My Profile</Link>
                             </li>
-                            <li className="nav-item align-self-center">
-                                <Link to="events" className="nav-link text-dark">Events Helpers</Link>
+                            <li className="nav-item">
+                                <Link to="points" className="nav-link text-dark">⭐ Rating Points</Link>
                             </li>
-                            <li className="nav-item align-self-center">
-                                <Link to="profile" className="nav-link text-dark">My profile</Link>
+                            <li className="nav-item">
+                                <Link to="events" className="nav-link text-dark">📅 Events</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="birthdays" className="nav-link text-dark">🎂 Birthday Calendar</Link>
                             </li>
                         </ul>
-
-                            <div className="container-fluid">
-                                <div className="collapse navbar-collapse">
-                                    <ul className="navbar-nav">
-                                        <li className="nav-item dropdown">
-                                            <a className="nav-link dropdown-toggle"
-                                               data-bs-toggle="dropdown"
-                                               aria-expanded="false">
-                                                <img src={esnStar} alt="esnLogo" height="30"/>
-                                            </a>
-                                            <ul className="dropdown-menu dropdown-menu"
-                                                aria-labelledby="navbarDropdownMenuLink">
-                                                <li><Link to="profile" className="dropdown-item">My Profile</Link></li>
-                                                <li><Link to="privacy" className="dropdown-item">Privacy info</Link>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        <ul className="navbar-nav flex-grow-1">
+                        <ul className="navbar-nav">
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src={esnStar} alt="ESN Star" height="30"/>
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><Link to="profile" className="dropdown-item">My Profile</Link></li>
+                                    <li><Link to="privacy" className="dropdown-item">Privacy Info</Link></li>
+                                </ul>
+                            </li>
                             <li className="nav-item">
                                 <Link to="register" className="nav-link text-dark">Register</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="login" className="nav-link text-dark">Login</Link>
                             </li>
-
                         </ul>
                     </div>
                 </div>
             </nav>
         </header>
+
     );
 }
 
