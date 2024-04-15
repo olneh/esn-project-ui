@@ -53,7 +53,8 @@ const ProfileMember = () => {
             return (
                 <>
                     <p>Current point level: {getLevel(points)}</p>
-                    <p>{first_name}! You currently have <span className="font-weight-bold">0 points</span>. <br/> {encouragement}</p>
+                    <p>{first_name}! You currently have <span
+                        className="font-weight-bold">0 points</span>. <br/> {encouragement}</p>
                 </>
             );
         }
@@ -63,7 +64,7 @@ const ProfileMember = () => {
         <>
             <br/>
             <Container className="mt-5">
-                <Row>
+                <Row className="align-items-start">
                     <Col md={4}>
                         <Card>
                             <Card.Body className="text-center">
@@ -74,7 +75,7 @@ const ProfileMember = () => {
                         </Card>
                     </Col>
                     <Col md={8}>
-                        <Card className="mt-3">
+                        <Card>
                             <Card.Body>
                                 <Card.Title className="font-weight-bold">My Info</Card.Title>
                                 <ListGroup>
