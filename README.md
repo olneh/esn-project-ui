@@ -44,3 +44,18 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Setting Up Local HTTPS
+
+To set up HTTPS locally, you'll need to generate your own SSL certificates:
+
+1. Install `mkcert` on your machine:
+    - Windows: `choco install mkcert`
+    - macOS: `brew install mkcert`
+    - Linux: Follow the instructions on the mkcert GitHub page.
+
+2. Navigate to the project root and run:
+   ```bash
+   mkcert -install
+   mkcert localhost
