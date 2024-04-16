@@ -5,7 +5,7 @@ import pic2 from "../images/sample2.png";
 import board from "../images/ESN board.png";
 import {Card, Carousel} from "react-bootstrap";
 import React from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 
 const Home = () => {
