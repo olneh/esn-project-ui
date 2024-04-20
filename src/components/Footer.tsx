@@ -2,7 +2,7 @@
 
 const Footer = () => {
     return (
-        <footer className="border-top footer text-muted">
+        <footer className="border-top text-muted text-center">
             <div className="container">
                 <div>
                     <span>Join </span>
@@ -14,8 +14,6 @@ const Footer = () => {
                 <div>&copy; 2024 ESN TalTech IC App</div>
             </div>
         </footer>
-
-
     );
 }
 
