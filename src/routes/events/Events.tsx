@@ -5,6 +5,7 @@ import { EventService } from "../../services/EventService";
 import EventTableView from "./EventTableView";
 import EventsRegistrationFormView from "./EventsRegistrationFormView";
 import { useNavigate } from "react-router-dom";
+import EventCalender from "./EventCalender";
 
 const Events = () => {
     const navigate = useNavigate();
@@ -13,12 +14,22 @@ const Events = () => {
     const [events, setEvents] = useState<IEvent[]>([]);
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
     const [values, setInput] = useState<IEvent>({
+        id: '503',
         eventTitle: 'Community Clean-Up',
         eventDate: new Date(),
         attendanceType: 'Open',
         comment: 'Bring gloves and wear comfortable shoes.',
         helpersNeeded: 5,
     });
+    const [sample, setSample] = useState<IEvent>({
+        id: '505',
+        eventTitle: 'Sample',
+        eventDate: new Date(),
+        attendanceType: 'Sample',
+        comment: 'Sample',
+        helpersNeeded: 2,
+    });
+
     const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
     useEffect(() => {
@@ -58,7 +69,7 @@ const Events = () => {
 
     const onDeleteEvent = async (eventId: string) => {
         await eventService.deleteEvent(eventId);
-        setEvents(events.filter(event => event.id !== eventId));
+        setEvents(events.filter(event => event.id.toString() !== eventId));
     };
 
     const handleShowModal = () => setShowModal(true);
@@ -70,6 +81,7 @@ const Events = () => {
                 <Col>
                     <h2>Events</h2>
                 </Col>
+                <EventCalender searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events}  onDeleteEvent={onDeleteEvent}/>
                 <Col xs="auto" className="ms-auto">
                     <Button variant="primary" onClick={handleShowModal} className="me-2">Suggest Event</Button>
                     <Button variant="primary" onClick={handleShowModal}>Add Event</Button>
