@@ -1,5 +1,4 @@
 import { MouseEvent } from "react";
-// import { ILoginData } from "../../dto/ILoginData";
 import './login.css';
 
 interface IProps {

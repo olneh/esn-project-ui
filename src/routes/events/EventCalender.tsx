@@ -5,19 +5,14 @@ import 'react-calendar/dist/Calendar.css';
 import {EventCard} from "./EventCard";
 
 interface EventCalenderProps {
-    searchKeyword: string;
-    setSearchKeyword: (keyword: string) => void;
     events: IEvent[];
     onDeleteEvent: (eventId: string) => Promise<void>;
 }
 
 const EventCalender: React.FC<EventCalenderProps> = ({
-                                                           searchKeyword,
-                                                           setSearchKeyword,
-                                                           events,
-                                                           onDeleteEvent,
-                                                       }) => {
-    const [sortAscending, setSortAscending] = useState<boolean>(true);
+                                                         events,
+                                                         onDeleteEvent,
+                                                     }) => {
 
     const isEventDay = (date: Date): boolean => {
         return events.some(event => {

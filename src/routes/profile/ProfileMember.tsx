@@ -9,14 +9,14 @@ const ProfileMember = () => {
         birthday: "1990-05-15",
         phone: "+1234567890",
         email: "marc.dolcet@example.com",
-        points: 0 // You can change this value to test different scenarios
+        points: 0 //  Change this value to test different scenarios
     };
     const {first_name, last_name, birthday, phone, email, points} = member;
 
     // Assign level based on points
     const getLevel = (points: number) => {
-        if (points >= 20) return "👑 Erasmus Overlord";
-        else if (points >= 15) return "🦉 Tutuic's Bestie";
+        if (points >= 20) return "👑 Erasmus King";
+        else if (points >= 15) return "🐰 Tutuic's Bestie";
         else if (points >= 12) return "🎓 TalTech IC Guru";
         else if (points >= 9) return "🎉 Party Maestro";
         else if (points >= 7) return "🎈 Event Enthusiast";
@@ -43,7 +43,7 @@ const ProfileMember = () => {
             return (
                 <div>
                     <p className="font-weight-bold mb-0">You have:</p>
-                    <h4 className="mb-3">{points} points!</h4>
+                    <h4 className="mb-3">{points} {points === 1 ? 'point' : 'points'}!</h4>
                     <p className="font-weight-bold mb-0">Current point level:</p>
                     <h4>{getLevel(points)}</h4>
                 </div>
@@ -52,9 +52,9 @@ const ProfileMember = () => {
             const encouragement = getRandomEncouragement();
             return (
                 <>
+                    <p>{first_name}! You don`t have any points yet 🙁
+                        <br/> {encouragement}</p>
                     <p>Current point level: {getLevel(points)}</p>
-                    <p>{first_name}! You currently have <span
-                        className="font-weight-bold">0 points</span>. <br/> {encouragement}</p>
                 </>
             );
         }

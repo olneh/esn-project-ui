@@ -15,14 +15,14 @@ interface EventTableViewProps {
 
 const EventTableView: React.FC<EventTableViewProps> = ({
                                                            searchKeyword,
-                                                           setSearchKeyword,
+                                                           // setSearchKeyword,
                                                            events,
                                                            onDeleteEvent,
                                                        }) => {
     const [sortAscending, setSortAscending] = useState<boolean>(true);
     const [memberNames, setMemberNames] = useState<{ [eventId: string]: string[] }>({});
 
-    const memberEventService = new MemberEventService(); // Assuming you have this service ready
+    const memberEventService = new MemberEventService();
 
     useEffect(() => {
         events.forEach(event => {

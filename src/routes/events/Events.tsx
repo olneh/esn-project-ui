@@ -81,7 +81,7 @@ const Events = () => {
                 <Col>
                     <h2>Events</h2>
                 </Col>
-                <EventCalender searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events}  onDeleteEvent={onDeleteEvent}/>
+                <EventCalender events={events} onDeleteEvent={onDeleteEvent}/>
                 <Col xs="auto" className="ms-auto">
                     <Button variant="primary" onClick={handleShowModal} className="me-2">Suggest Event</Button>
                     <Button variant="primary" onClick={handleShowModal}>Add Event</Button>

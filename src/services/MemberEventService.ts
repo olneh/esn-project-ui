@@ -13,7 +13,7 @@ export class MemberEventService extends BaseService {
         const task = "Complete the task";
 
         const postData = new URLSearchParams();
-        postData.append('event_id', event_id.toString()); // Make sure event_id is defined and not null
+        postData.append('event_id', event_id.toString());
         postData.append('member_manager_id', member_manager_id.toString());
         postData.append('member_receiver_id', member_receiver_id.toString());
         postData.append('points', points.toString());
