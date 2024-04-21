@@ -1,11 +1,12 @@
 import esnLogo from "../images/ESN star.png";
 import esnGroup from "../images/ESN group photo.png";
-import pic1 from "../images/sample1.png";
-import pic2 from "../images/sample2.png";
-import board from "../images/ESN board.png";
+import pic1 from "../images/img_1.png";
+import pic2 from "../images/img_2.png";
+import pic from "../images/img.png";
 import {Card, Carousel} from "react-bootstrap";
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import Points from "./points/Points";
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
 
     return (
         <>
+            <Points/>
             <div className="text-center">
                 <h2>
                     <div><img src={esnLogo} alt="esnLogo" height="30"/>Home</div>
@@ -26,21 +28,18 @@ const Home = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                     <div className="carousel-item-container">
-                        <img src={board} alt="ESN Logo" className="carousel-img"/>
+                        <img src={pic2} alt="ESN Logo" className="carousel-img"/>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div className="carousel-item-container">
-                        <img src={pic2} alt="ESN Logo" className="carousel-img"/>
+                        <img src={pic} alt="ESN Logo" className="carousel-img"/>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div className="carousel-item-container">
                         <img src={esnGroup} alt="ESN Logo" className="carousel-img"/>
                     </div>
-                    <Carousel.Caption>
-                        <h3>Sample slide label</h3>
-                    </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
 
