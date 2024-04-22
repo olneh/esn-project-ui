@@ -1,7 +1,7 @@
 import Axios, { AxiosInstance } from 'axios';
 
 export abstract class BaseService {
-    private static hostBaseURL = "http://localhost:8080/api/";
+    private static hostBaseURL = "https://localhost:8443/esn/api/";
 
     protected axios: AxiosInstance;
 
@@ -10,11 +10,11 @@ export abstract class BaseService {
         this.axios = Axios.create(
             {
                 baseURL: BaseService.hostBaseURL + baseUrl,
-                headers: {
-                    common: {
-                        'Content-Type': 'application/json'
-                    }
-                }
+                // headers: {
+                //     common: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // }
             }
         )
 
