@@ -10,10 +10,16 @@ interface MemberTableViewProps {
 
 const MemberTableView: React.FC<MemberTableViewProps> = ({ searchKeyword, setSearchKeyword, members }) => {
     const [sortAscending, setSortAscending] = useState<boolean>(true);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+
 
     const toggleSort = () => {
         setSortAscending(!sortAscending);
     };
+
+    const filteredMembers = members.filter(member => {
+        return member.firstName.toLowerCase().includes(searchTerm) || member.lastName.toLowerCase().includes(searchTerm);
+    });
 
     const sortedMembers = [...members].sort((a, b) => {
         // Treat undefined points as 0
@@ -27,13 +33,6 @@ const MemberTableView: React.FC<MemberTableViewProps> = ({ searchKeyword, setSea
         }
     });
 
-    const filteredMembers = sortedMembers.filter(member =>
-        member.firstName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-        member.lastName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-        member.phone?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-        member.email?.toLowerCase().includes(searchKeyword.toLowerCase())
-    );
-
     return (
         <>
             <table className="table table-striped table-bordered mt-4">
@@ -44,7 +43,7 @@ const MemberTableView: React.FC<MemberTableViewProps> = ({ searchKeyword, setSea
                     <th scope="col">Phone Number</th>
                     <th scope="col">Email</th>
                     <th scope="col" style={{cursor: 'pointer'}} onClick={toggleSort}>
-                        Points {sortAscending ? '↑' : '↓'}
+                        ⭐ Points {sortAscending ? '↑' : '↓'}
                     </th>
                 </tr>
                 </thead>
