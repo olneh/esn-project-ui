@@ -36,8 +36,6 @@ const Register = () => {
     const onSubmit = async (event: MouseEvent) => {
         event.preventDefault();
         console.log('onSubmit', event);
-        // console.log("values")
-        // console.log(values)
 
         // error check functions
         if (values.firstName.length == 0 ||

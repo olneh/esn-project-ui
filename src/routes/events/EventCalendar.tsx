@@ -9,7 +9,7 @@ interface EventCalenderProps {
     onDeleteEvent: (eventId: string) => Promise<void>;
 }
 
-const EventCalender: React.FC<EventCalenderProps> = ({
+const EventCalendar: React.FC<EventCalenderProps> = ({
                                                          events,
                                                          onDeleteEvent,
                                                      }) => {
@@ -69,4 +69,4 @@ const EventCalender: React.FC<EventCalenderProps> = ({
     );
 }
 
-export default EventCalender;
+export default EventCalendar;

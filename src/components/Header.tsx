@@ -9,7 +9,7 @@ const Header = () => {
             <nav
                 className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div className="container">
-                    <a className="navbar-brand" href="/home">
+                    <a className="navbar-brand" href="/home/Home">
                         <img src={esnLogo} alt="ESN Logo" height="30"/>
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -44,14 +44,15 @@ const Header = () => {
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><Link to="profile" className="dropdown-item">My Profile</Link></li>
                                     <li><Link to="privacy" className="dropdown-item">Privacy Info</Link></li>
+                                    <li className="nav-item">
+                                        <Link to="register" className="nav-link text-dark">Register</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="login" className="nav-link text-dark">Login</Link>
+                                    </li>
                                 </ul>
                             </li>
-                            <li className="nav-item">
-                                <Link to="register" className="nav-link text-dark">Register</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="login" className="nav-link text-dark">Login</Link>
-                            </li>
+
                         </ul>
                     </div>
                 </div>

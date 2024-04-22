@@ -9,7 +9,7 @@ const ProfileMember = () => {
         birthday: "1990-05-15",
         phone: "+1234567890",
         email: "marc.dolcet@example.com",
-        points: 0 //  Change this value to test different scenarios
+        points: 30 //  Change this value to test different scenarios
     };
     const {first_name, last_name, birthday, phone, email, points} = member;
 

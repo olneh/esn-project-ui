@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {MemberService} from "../../services/MemberService";
 import {IMember} from "../../entities/IMember";
-import SearchBar from "../SearchBar";
+import SearchBar from "../../components/SearchBar";
 import MemberBirthdayTableView from "./MemberBirthdayTableView";
 import HomeBirthdayTableView from "./HomeBirthdayTableView";
 

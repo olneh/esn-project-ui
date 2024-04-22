@@ -1,12 +1,12 @@
-import esnLogo from "../images/ESN star.png";
-import esnGroup from "../images/ESN group photo.png";
-import pic1 from "../images/img_1.png";
-import pic2 from "../images/img_2.png";
-import pic from "../images/img.png";
+import esnLogo from "../../images/ESN star.png";
+import esnGroup from "../../images/ESN group photo.png";
+import pic1 from "../../images/img_1.png";
+import pic2 from "../../images/img_2.png";
+import pic from "../../images/img.png";
 import {Card, Carousel} from "react-bootstrap";
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import Points from "./points/Points";
+import Points from "../points/Points";
 
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
 
     return (
         <>
-            <Points/>
+            {/*<Points/>*/}
             <div className="text-center">
                 <h2>
                     <div><img src={esnLogo} alt="esnLogo" height="30"/>Home</div>

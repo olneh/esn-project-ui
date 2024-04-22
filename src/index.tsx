@@ -14,9 +14,9 @@ import {
 } from "react-router-dom";
 
 import Root from './routes/Root';
-import Home from "./routes/Home";
+import Home from "./routes/home/Home";
 import Events from "./routes/events/Events";
-import MemberPoints from "./routes/members/MemberPoints";
+import MemberPoints from "./routes/member-points/MemberPoints";
 import Profile from "./routes/profile/Profile";
 import ErrorPage from "./routes/ErrorPage";
 import Login from "./routes/identity/Login";

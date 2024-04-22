@@ -26,9 +26,9 @@ const PhotoUploadForm: React.FC<PhotoUploadFormProps> = ({ memberId }) => {
 
         try {
             const response = await axios.post(`/members/${memberId}/uploadPhoto`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+                // headers: {
+                //     'Content-Type': 'multipart/form-data',
+                // },
             });
             alert('Photo uploaded successfully: ' + response.data);
         } catch (error) {

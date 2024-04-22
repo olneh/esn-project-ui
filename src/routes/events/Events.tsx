@@ -5,7 +5,7 @@ import { EventService } from "../../services/EventService";
 import EventTableView from "./EventTableView";
 import EventsRegistrationFormView from "./EventsRegistrationFormView";
 import { useNavigate } from "react-router-dom";
-import EventCalender from "./EventCalender";
+import EventCalendar from "./EventCalendar";
 
 const Events = () => {
     const navigate = useNavigate();
@@ -81,7 +81,7 @@ const Events = () => {
                 <Col>
                     <h2>Events</h2>
                 </Col>
-                <EventCalender events={events} onDeleteEvent={onDeleteEvent}/>
+                <EventCalendar events={events} onDeleteEvent={onDeleteEvent}/>
                 <Col xs="auto" className="ms-auto">
                     <Button variant="primary" onClick={handleShowModal} className="me-2">Suggest Event</Button>
                     <Button variant="primary" onClick={handleShowModal}>Add Event</Button>

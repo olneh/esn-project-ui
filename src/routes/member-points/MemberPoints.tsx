@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {MemberService} from "../../services/MemberService";
 import {IMember} from "../../entities/IMember";
-import SearchBar from "../SearchBar";
+import SearchBar from "../../components/SearchBar";
 import MemberTableView from "./MemberTableView";
 import MemberBirthdayTableView from "../birthday/MemberBirthdayTableView";
 import PhotoUploadForm from "./PhotoUploadForm";
@@ -26,15 +26,12 @@ const MemberPoints = () => {
     return (
         <>
             <div>
-                <h1>Member Photo Upload</h1>
-                <PhotoUploadForm memberId={memberId}/>
+                {/*<h1>Member Photo Upload</h1>*/}
+                {/*<PhotoUploadForm memberId={memberId}/>*/}
             </div>
-            <h1>Points</h1>
-            <h1>User Ratings</h1>
+            <h1>⭐Rating Points</h1>
             <SearchBar searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword}/>
             <MemberTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} members={members}/>
-            <MemberBirthdayTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword}
-                                     members={members}/>
         </>
     )
 
