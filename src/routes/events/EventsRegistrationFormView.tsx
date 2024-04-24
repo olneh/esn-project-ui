@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent, MouseEvent } from 'react';
+import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { IEvent } from "../../entities/IEvent";
 import {EAttendanceType} from "../../enums/EAttendanceType";
@@ -29,12 +29,12 @@ const EventsRegistrationFormView = ({ show, onHide, values, handleChange, onSubm
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="eventDate">
-                            <Form.Label>Event Date</Form.Label>
+                            <Form.Label>Event Date and Time</Form.Label>
                             <Form.Control
-                                type="date"
+                                type="datetime-local"
                                 name="eventDate"
-                                value={values.eventDate ? values.eventDate.toISOString().split('T')[0] : ''}
                                 onChange={(e) => handleChange(e.target as EventTarget & HTMLInputElement)}
+                                placeholder="dd-MM-yyyy HH:mm"
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="attendanceType">
@@ -78,6 +78,6 @@ const EventsRegistrationFormView = ({ show, onHide, values, handleChange, onSubm
                 </Form>
             </Modal>
         );
-    }
+}
 
 export default EventsRegistrationFormView;
