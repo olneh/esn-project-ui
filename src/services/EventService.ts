@@ -50,9 +50,9 @@ export class EventService extends BaseService {
         }
     }
 
-    async deleteEvent(postId: string): Promise<boolean> {
+    async deleteEvent(eventId: number): Promise<boolean> {
         try {
-            const response = await this.axios.delete<boolean>(`deleteEvent/${postId}`);
+            const response = await this.axios.delete<boolean>(`deleteEvent/${eventId.toString()}`);
             if (response.status === 200) {
                 return true;
             }

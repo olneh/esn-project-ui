@@ -6,7 +6,7 @@ import {EventCard} from "./EventCard";
 
 interface EventCalenderProps {
     events: IEvent[];
-    onDeleteEvent: (eventId: string) => Promise<void>;
+    onDeleteEvent: (eventId: number) => Promise<void>;
 }
 
 const EventCalendar: React.FC<EventCalenderProps> = ({

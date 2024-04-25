@@ -14,22 +14,13 @@ const Events = () => {
     const [events, setEvents] = useState<IEvent[]>([]);
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
     const [values, setInput] = useState<IEvent>({
-        id: '503',
+        id: 503,
         eventTitle: 'Community Clean-Up',
         eventDate: new Date(),
         attendanceType: 'Open',
         comment: 'Bring gloves and wear comfortable shoes.',
         helpersNeeded: 5,
     });
-    const [sample, setSample] = useState<IEvent>({
-        id: '505',
-        eventTitle: 'Sample',
-        eventDate: new Date(),
-        attendanceType: 'Sample',
-        comment: 'Sample',
-        helpersNeeded: 2,
-    });
-
     const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
     useEffect(() => {
@@ -67,9 +58,9 @@ const Events = () => {
         }
     };
 
-    const onDeleteEvent = async (eventId: string) => {
+    const onDeleteEvent = async (eventId: number) => {
         await eventService.deleteEvent(eventId);
-        setEvents(events.filter(event => event.id.toString() !== eventId));
+        setEvents(events.filter(event => event.id !== eventId));
     };
 
     const handleShowModal = () => setShowModal(true);

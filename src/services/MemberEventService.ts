@@ -5,7 +5,7 @@ export class MemberEventService extends BaseService {
         super('memberEvents/');
     }
 
-    async addMemberEvent(): Promise<void> {
+    async addMemberEventPoints(): Promise<void> {
         const event_id = 1;
         const member_manager_id = 1;
         const member_receiver_id = 2;
@@ -33,14 +33,12 @@ export class MemberEventService extends BaseService {
         }
     }
 
-    async registerMemberEvent(): Promise<void> {
-        const event_id = 1;
-        const member_receiver_id = 2;
+    async registerMemberEvent(eventId: number, memberReceiverId: number): Promise<void> {
         const task = "Complete the task";
 
         const postData = new URLSearchParams();
-        postData.append('event_id', event_id.toString());
-        postData.append('member_receiver_id', member_receiver_id.toString());
+        postData.append('event_id', eventId.toString());
+        postData.append('member_receiver_id', memberReceiverId.toString());
         postData.append('task', task);
 
         try {

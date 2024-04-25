@@ -4,7 +4,7 @@ import { IEvent } from "../../entities/IEvent";
 
 interface EventCardProps {
     event: IEvent;
-    onDeleteEvent: (eventId: string) => void;
+    onDeleteEvent: (eventId: number) => void;
 }
 
 export const EventCard: React.FC<EventCardProps> = ({ event, onDeleteEvent }) => {
