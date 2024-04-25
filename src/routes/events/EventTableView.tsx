@@ -112,18 +112,18 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                         <td>
                             {memberNames[event.id] && memberNames[event.id].length > 0 ?
                                 memberNames[event.id].map((name) => <div key={name}>{name}<br/></div>) :
-                                <Alert variant="warning">Join now! 🚀</Alert>}
+                                <Alert variant="secondary">Join now! 🚀</Alert>}
                         </td>
                         <td>
                             {(event.helpersNeeded - (memberNames[event.id]?.length ?? 0)) > 0
                                 ? <Points eventId={event.id} memberReceiverId={1}/>
-                                : <Alert>No more places</Alert>}
+                                : <><Alert variant="secondary">No more places</Alert>'No more places'</>}
                         </td>
                         <td>
-                            <Button variant="danger" size="sm" onClick={() => event.id && onDeleteEvent(event.id)}>
+                            <Button className={"esn-magenta"} size="sm" onClick={() => event.id && onDeleteEvent(event.id)}>
                                 Delete
                             </Button>
-                            <Button variant="info" size="sm">
+                            <Button className={"esn-cyan"} size="sm">
                                 Edit
                             </Button>
                         </td>

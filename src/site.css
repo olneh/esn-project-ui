@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Kelson+Sans&display=swap');
 
 html {
-    /*font-size: 40px;*/
+    position: relative;
+    min-height: 100%;
 }
 
 /* If the screen size is 1200px wide or more, set the font-size to 80px */
@@ -17,6 +18,22 @@ html {
         font-size: 30px;
     }
 }
+
+:root {
+    --esn-orange: rgb(244, 123, 32); /* ESN Orange */
+    --esn-magenta: rgb(236, 0, 140); /* ESN Magenta */
+    --esn-cyan: rgb(0, 174, 239); /* ESN Cyan */
+    --esn-green: rgb(122, 193, 67); /* ESN Green */
+    --esn-dark-blue: rgb(46, 49, 146); /* ESN Dark Blue */
+
+    /* Half-transparent versions */
+    --esn-orange-half: rgba(244, 123, 32, 0.2);
+    --esn-magenta-half: rgba(236, 0, 140, 0.2);
+    --esn-cyan-half: rgba(0, 174, 239, 0.2);
+    --esn-green-half: rgba(122, 193, 67, 0.2);
+    --esn-dark-blue-half: rgba(46, 49, 146, 0.2);
+}
+
 
 .flex-container {
     display: flex;
@@ -50,40 +67,28 @@ html {
 }
 
 button.event-day {
-    background-color: rgba(146, 46, 86, 0.24);
+    background-color: var(--esn-green);
     color: #ffffff;
 }
 
-.btn-danger:hover {
-    background-color: #ec008c;
-    border-color: #ec008c;
-}
-
 button {
-    background-color: #2e3192;
+    background-color: var(--esn-dark-blue);
     margin: 1px;
 }
-
-/*img {*/
-/*    margin: 1%;*/
-/*}*/
 
 .btn:focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
 .form-control:focus,
 .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--esn-cyan);
 }
 
 body {
     margin-bottom: 60px;
     font-family: 'Kelson Sans', sans-serif;
+    background: #F4F7FD;
+    margin-top: 20px;
 }
 
 
@@ -94,21 +99,21 @@ a.navbar-brand {
 }
 
 a {
-    color: #0077cc;
+    color: var(--esn-cyan);
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #2e3192;
+    background-color: var(--esn-dark-blue);
 
-    border-color: #2e3192;
+    border-color: var(--esn-dark-blue);
 }
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #2e3192;
-    border-color: #2e3192;
+    background-color: var(--esn-dark-blue);
+    border-color: var(--esn-dark-blue);
 }
 
 .border-top {
@@ -182,11 +187,6 @@ button.accept-policy {
     border-radius: calc(8px - 1px) calc(8px - 1px) 0 0;
 }
 
-body {
-    background: #F4F7FD;
-    margin-top: 20px;
-}
-
 
 .lesson-heading {
     display: flex;
@@ -197,7 +197,9 @@ body {
 }
 
 /*-------------------slideshow--------------------------*/
-* {box-sizing:border-box}
+* {
+    box-sizing: border-box
+}
 
 .slideshow-container {
     max-width: 1000px;
@@ -251,8 +253,12 @@ body {
 }
 
 @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
 /*--Home columns--*/
@@ -299,7 +305,71 @@ body {
 
 .carousel-img {
     width: 100%;
-    height: auto;
     object-fit: cover; /* Image covers the container */
     object-position: top; /* Align image to the top */
 }
+
+/*--------------TEST CUSTOM ESN STYLES----------------*/
+
+.esn-orange {
+    background-color: var(--esn-orange);
+    border-color: var(--esn-orange);
+    color: white;
+}
+
+.esn-magenta {
+    background-color: var(--esn-magenta);
+    border-color: var(--esn-magenta);
+    color: white;
+}
+
+.esn-cyan {
+    background-color: var(--esn-cyan);
+    border-color: var(--esn-cyan);
+    color: white;
+}
+
+.esn-green {
+    background-color: var(--esn-green);
+    border-color: var(--esn-green);
+    color: white;
+}
+
+.esn-dark-blue {
+    background-color: var(--esn-dark-blue);
+    border-color: var(--esn-dark-blue);
+    color: white;
+}
+
+/*--------------TEST CUSTOM ESN STYLES Transparent----------------*/
+
+.esn-orange-half {
+    background-color: var(--esn-orange-half);
+    border-color: var(--esn-orange);
+    /*color: white;*/
+}
+
+.esn-magenta-half {
+    background-color: var(--esn-magenta-half);
+    border-color: var(--esn-magenta);
+    /*color: white;*/
+}
+
+.esn-cyan-half {
+    background-color: var(--esn-cyan-half);
+    border-color: var(--esn-cyan);
+    /*color: white;*/
+}
+
+.esn-green-half {
+    background-color: var(--esn-green-half);
+    border-color: var(--esn-green);
+    /*color: white;*/
+}
+
+.esn-dark-blue-half {
+    background-color: var(--esn-dark-blue-half);
+    border-color: var(--esn-dark-blue);
+    /*color: white;*/
+}
+
