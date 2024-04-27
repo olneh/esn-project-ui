@@ -37,9 +37,9 @@ export class EventService extends BaseService {
         }
     }
 
-    async update(eventId: string, data: Partial<IEvent>): Promise<IEvent | undefined> {
+    async updateEvent(eventId: number, data: IEvent): Promise<IEvent | undefined> {
         try {
-            const response = await this.axios.put<IEvent>(`updateEvent/${eventId}`, data);
+            const response = await this.axios.put<IEvent>(`updateEvent/${eventId.toString()}`, data);
             if (response.status === 200) {
                 return response.data;
             }

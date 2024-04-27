@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {IEvent} from "../../entities/IEvent";
 import {Alert, Button, OverlayTrigger, Table, Tooltip} from "react-bootstrap";
 import 'react-calendar/dist/Calendar.css';
-import {EMonths} from "../../enums/EMonths";
 import {MemberEventService} from "../../services/MemberEventService";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Points from "../points/Points";
+import UpdateEvent from "./UpdateEvent";
+import {format} from "date-fns";
 
 interface EventTableViewProps {
     searchKeyword: string;
@@ -92,7 +93,8 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                                 <Tooltip id="info-tooltip"> {event.attendanceType} </Tooltip>}>
                             <i className="bi bi-info-circle"></i>
                         </OverlayTrigger> {event.eventTitle} </td>
-                        <td>{event.eventDate ? `${new Date(event.eventDate).getDate()} ${EMonths[new Date(event.eventDate).getMonth()]}` : 'N/A'}</td>
+                        <td>{event.eventDate ? format(new Date(event.eventDate), 'dd MMMM yyyy HH:mm') : 'N/A'} </td>
+
                         <td>{event.comment}</td>
                         <td>
                             {memberNames[event.id] ? (
@@ -126,6 +128,9 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                             <Button className={"esn-cyan"} size="sm">
                                 Edit
                             </Button>
+                        </td>
+                        <td>
+                            <UpdateEvent event={event}/>
                         </td>
                     </tr>
                 ))}
