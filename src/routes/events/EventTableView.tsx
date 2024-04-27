@@ -46,21 +46,6 @@ const EventTableView: React.FC<EventTableViewProps> = ({
         setSortAscending(!sortAscending);
     };
 
-    const [dateSortAscending, setDateSortAscending] = useState<boolean>(true);
-    const toggleDateSort = () => {
-        setDateSortAscending(!dateSortAscending);
-    };
-    const dateSortedEvents = [...events].sort((a, b) => {
-        const dateA = new Date(a.eventDate).getTime();
-        const dateB = new Date(b.eventDate).getTime();
-        return dateSortAscending ? dateA - dateB : dateB - dateA; // Sort by date
-    });
-    const filteredDateSortedEvents = dateSortedEvents.filter((event) => {
-        const eventTitleMatches = event.eventTitle.toLowerCase().includes(searchKeyword.toLowerCase());
-        const eventDateMatches = event.eventDate && format(new Date(event.eventDate), 'dd MMM yyyy HH:mm').toLowerCase().includes(searchKeyword.toLowerCase());
-        return eventTitleMatches || eventDateMatches;
-    });
-
     const sortedEvents = [...events].sort((a, b) => {
         const participantsNeededTotalA = a.helpersNeeded ?? 0;
         const participantsNeededTotalB = b.helpersNeeded ?? 0;
