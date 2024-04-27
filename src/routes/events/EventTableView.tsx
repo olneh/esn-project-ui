@@ -46,6 +46,21 @@ const EventTableView: React.FC<EventTableViewProps> = ({
         setSortAscending(!sortAscending);
     };
 
+    const [dateSortAscending, setDateSortAscending] = useState<boolean>(true);
+    const toggleDateSort = () => {
+        setDateSortAscending(!dateSortAscending);
+    };
+    const dateSortedEvents = [...events].sort((a, b) => {
+        const dateA = new Date(a.eventDate).getTime();
+        const dateB = new Date(b.eventDate).getTime();
+        return dateSortAscending ? dateA - dateB : dateB - dateA; // Sort by date
+    });
+    const filteredDateSortedEvents = dateSortedEvents.filter((event) => {
+        const eventTitleMatches = event.eventTitle.toLowerCase().includes(searchKeyword.toLowerCase());
+        const eventDateMatches = event.eventDate && format(new Date(event.eventDate), 'dd MMM yyyy HH:mm').toLowerCase().includes(searchKeyword.toLowerCase());
+        return eventTitleMatches || eventDateMatches;
+    });
+
     const sortedEvents = [...events].sort((a, b) => {
         const participantsNeededTotalA = a.helpersNeeded ?? 0;
         const participantsNeededTotalB = b.helpersNeeded ?? 0;
@@ -121,16 +136,12 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                                 : <><Alert variant="secondary">No more places</Alert></>}
                         </td>
                         <td>
-                            <Button className={"esn-cyan"} size="sm"
-                                    onClick={() => toggleVisibility(event.id)}
-                            >
-                                Edit
+                            <Button className="esn-cyan" size="sm" onClick={() => toggleVisibility(event.id)}>
+                                {visibleEventId === event.id ? 'Close Edit' : 'Open Edit'}
                             </Button>
-                            {visibleEventId === event.id &&
-                                <UpdateEvent event={event}/>}
+                            {visibleEventId === event.id && <UpdateEvent event={event}/>}
                             <div className="d-flex justify-content-center">
-                                <Button className={"esn-magenta"} size="sm"
-                                        onClick={() => event.id && onDeleteEvent(event.id)}>
+                                <Button className="esn-magenta" size="sm" onClick={() => event.id && onDeleteEvent(event.id)}>
                                     Delete Event
                                 </Button>
                             </div>
