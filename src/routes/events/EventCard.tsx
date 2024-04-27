@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import {Card, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { IEvent } from "../../entities/IEvent";
 
 interface EventCardProps {
@@ -12,27 +12,33 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onDeleteEvent }) =>
         <>
             <Card className="mb-3 shadow-sm" style={{ width: '20rem' }}>
                 <Card.Header>
-                    <Card.Title>{event.eventTitle}</Card.Title>
+                    <Card.Title>{event.eventTitle}
+                        &nbsp;
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id="info-tooltip"> {event.attendanceType} </Tooltip>}>
+                            <i className="bi bi-info-circle"></i>
+                        </OverlayTrigger>
+                    </Card.Title>
                 </Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        <strong>Comment:</strong> {event.comment}
+                        <strong>Time:</strong> {new Date(event.eventDate).toLocaleString()}
                     </Card.Text>
                     <Card.Text>
-                        <strong>Time:</strong> {new Date(event.eventDate).toLocaleString()}
+                        <strong>Comment:</strong> {event.comment}
                     </Card.Text>
                     <Card.Text>
                         <strong>Helpers needed:</strong> {event.helpersNeeded}
                     </Card.Text>
                 </Card.Body>
-                <Card.Footer className="d-flex justify-content-between">
-                    <Button variant="danger" size="sm" onClick={() => event.id && onDeleteEvent(event.id)}>
-                        Delete
-                    </Button>
-                    <Button variant="secondary" size="sm">
-                        Edit event
-                    </Button>
-                </Card.Footer>
+                {/*<Card.Footer className="d-flex justify-content-between">*/}
+                {/*    <Button className="esn-magenta" size="sm"*/}
+                {/*            onClick={() => event.id && onDeleteEvent(event.id)}>*/}
+                {/*        Delete Event*/}
+                {/*    </Button>*/}
+                {/*</Card.Footer>*/}
             </Card>
         </>
     );

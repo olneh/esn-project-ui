@@ -8,7 +8,7 @@ interface PointsProps {
 }
 
 
-const Points: React.FC<PointsProps> = ({eventId, memberReceiverId}) => {
+const RegisterForEvent: React.FC<PointsProps> = ({eventId, memberReceiverId}) => {
     const memberEventService = new MemberEventService();
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,19 +23,12 @@ const Points: React.FC<PointsProps> = ({eventId, memberReceiverId}) => {
     };
 
     return (
-        <Container>
-            {/*<Button*/}
-            {/*    onClick={(e) => onSubmit(e as any)}*/}
-            {/*>*/}
-            {/*    Submit Sample Event*/}
-            {/*</Button>*/}
-            <Button
+        <Button className="esn-dark-blue" size="sm"
                 onClick={(e) => onClick(e as any)}
-            >
-                Register as user 1
-            </Button>
-        </Container>
+        >
+            Register as user 1
+        </Button>
     );
 };
 
-export default Points;
+export default RegisterForEvent;

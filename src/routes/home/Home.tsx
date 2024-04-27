@@ -6,7 +6,7 @@ import pic from "../../images/img.png";
 import {Card, Carousel} from "react-bootstrap";
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import Points from "../points/Points";
+import RegisterForEvent from "../points/RegisterForEvent";
 
 
 const Home = () => {
