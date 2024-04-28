@@ -9,7 +9,7 @@ const Header = () => {
             <nav
                 className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div className="container">
-                    <a className="navbar-brand" href="/home/Home">
+                    <a className="navbar-brand" href="/home">
                         <img src={esnLogo} alt="ESN Logo" height="30"/>
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -34,10 +34,13 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link to="birthdays" className="nav-link text-dark">🎂 Birthday Calendar</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to="feedback" className="nav-link text-dark">📝 Feedbacks</Link>
+                            </li>
                         </ul>
                         <ul className="navbar-nav">
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                <a className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src={esnStar} alt="ESN Star" height="30"/>
                                 </a>

@@ -22,6 +22,7 @@ import ErrorPage from "./routes/ErrorPage";
 import Login from "./routes/identity/Login";
 import Register from "./routes/identity/Register";
 import Birthday from "./routes/birthday/Birthday";
+import Feedbacks from "./routes/feedback/Feedbacks";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             {
                 path: "register/",
                 element: <Register />,
+            },
+            {
+                path: "feedback/",
+                element: <Feedbacks />,
             },
         ]
     },
