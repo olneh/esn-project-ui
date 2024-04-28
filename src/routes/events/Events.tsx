@@ -4,23 +4,42 @@ import { IEvent } from "../../entities/IEvent";
 import { EventService } from "../../services/EventService";
 import EventTableView from "./EventTableView";
 import EventsRegistrationFormView from "./EventsRegistrationFormView";
-import { useNavigate } from "react-router-dom";
 import EventCalendar from "./EventCalendar";
+import {IFeedback} from "../../entities/IFeedback";
+import {MemberEvent} from "../../entities/IMemberEvent";
 
 const Events = () => {
-    const navigate = useNavigate();
     const eventService = new EventService();
     const [searchKeyword, setSearchKeyword] = useState('');
     const [events, setEvents] = useState<IEvent[]>([]);
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
+
+    const sampleFeedback: IFeedback = {
+        id: 1,
+        comment: 'Great event!',
+        eventId: 101,
+    };
+
+    const sampleMemberEvent: MemberEvent = {
+        id: 1,
+        task: 'Setup chairs',
+        points: 10,
+        eventId: 101,
+        memberReceiverId: 201,
+        memberManagerId: 301,
+    };
+
     const [values, setInput] = useState<IEvent>({
-        id: 503,
+        id: 101,
         eventTitle: 'Community Clean-Up',
         eventDate: new Date(),
         attendanceType: 'Open',
         comment: 'Bring gloves and wear comfortable shoes.',
         helpersNeeded: 5,
+        feedbackList: [sampleFeedback],
+        memberEvents: [sampleMemberEvent]
     });
+
     const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
     useEffect(() => {
