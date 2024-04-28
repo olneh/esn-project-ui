@@ -3,7 +3,7 @@ import {MemberService} from "../../services/MemberService";
 import {IMember} from "../../entities/IMember";
 import SearchBar from "../../components/SearchBar";
 import MemberBirthdayByMonthTableView from "./MemberBirthdayByMonthTableView";
-import HomeBirthdayTableView from "./HomeBirthdayTableView";
+import BirthdayTableView from "./BirthdayTableView";
 
 const MemberPoints = () => {
     const memberService = new MemberService();
@@ -27,7 +27,7 @@ const MemberPoints = () => {
             <MemberBirthdayByMonthTableView searchKeyword={searchByMonthKeyword}
                                             members={members}/>
             <SearchBar searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword}/>
-            <HomeBirthdayTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} members={members}/>
+            <BirthdayTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} members={members}/>
         </>
     )
 

@@ -8,7 +8,7 @@ interface HomeBirthdayTableViewProps {
     members: IMember[];
 }
 
-const HomeBirthdayTableView: React.FC<HomeBirthdayTableViewProps> = ({ searchKeyword, setSearchKeyword, members }) => {
+const BirthdayTableView: React.FC<HomeBirthdayTableViewProps> = ({ searchKeyword, setSearchKeyword, members }) => {
     const [sortAscending, setSortAscending] = useState<boolean>(true);
 
     const formatDate = (birthday?: Date | string) => {
@@ -63,7 +63,7 @@ const HomeBirthdayTableView: React.FC<HomeBirthdayTableViewProps> = ({ searchKey
                             >
                             <td>{isToday(member.birthday) ?
                             <Alert className={"esn-green-half-bg"}>{member.firstName} {member.lastName}, HAPPY BIRTHDAY! 🎂</Alert>
-                             : <a>&nbsp;${member.firstName} ${member.lastName}</a>}</td>
+                             : <a>&nbsp;{member.firstName} {member.lastName}</a>}</td>
                             <td>{formatDate(member.birthday)}</td>
                         </tr>
                     ))}
@@ -74,4 +74,4 @@ const HomeBirthdayTableView: React.FC<HomeBirthdayTableViewProps> = ({ searchKey
     );
 }
 
-export default HomeBirthdayTableView;
+export default BirthdayTableView;
