@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {Card, ListGroup, Container, Row, Col, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {Card, ListGroup, Container, Row, Col, Button, OverlayTrigger, Tooltip, Alert} from 'react-bootstrap';
 import { EventService } from '../../services/EventService';
 import { IEvent } from '../../entities/IEvent';
-import {EMonths} from "../../enums/EMonths";
+import { EMonths } from '../../enums/EMonths';
 
 const FeedbackManager: React.FC = () => {
     const eventService = new EventService();
@@ -13,7 +13,17 @@ const FeedbackManager: React.FC = () => {
             try {
                 const eventsFromService = await eventService.getAllEvents();
                 if (Array.isArray(eventsFromService)) {
-                    setEvents(eventsFromService);
+                    const sortedEvents = eventsFromService.sort((a, b) => {
+                        const dateA = a.eventDate ? new Date(a.eventDate) : new Date(0);
+                        const dateB = b.eventDate ? new Date(b.eventDate) : new Date(0);
+                        const monthA = dateA.getMonth();
+                        const dayA = dateA.getDate();
+                        const monthB = dateB.getMonth();
+                        const dayB = dateB.getDate();
+                        return monthA === monthB ? dayA - dayB : monthA - monthB;
+                    });
+
+                    setEvents(sortedEvents);
                 } else {
                     console.error('Event data is not an array');
                     setEvents([]);
@@ -25,6 +35,11 @@ const FeedbackManager: React.FC = () => {
         };
         fetchEvents();
     }, []);
+
+    const isEventPassed = (eventDate: Date) => {
+        const today = new Date();
+        return new Date(eventDate) < today;
+    };
 
     return (
         <Container fluid>
@@ -51,9 +66,8 @@ const FeedbackManager: React.FC = () => {
                                     >
                                         <i className="bi bi-info-circle ms-2"></i>
                                     </OverlayTrigger>
-                                    <br/>
+                                    <br />
                                     {event.eventTitle}
-                                    <br/>
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
@@ -70,7 +84,11 @@ const FeedbackManager: React.FC = () => {
                                 </ListGroup>
                             </Card.Body>
                             <Card.Footer>
-                                <Button variant="primary">Add Feedback</Button>
+                                {isEventPassed(event.eventDate) ? (
+                                    <Button>Add Feedback</Button>
+                                ) : (
+                                    <Alert className={"esn-dark-blue-half-bg"}>This event is upcoming</Alert>
+                                )}
                             </Card.Footer>
                         </Card>
                     </Col>
