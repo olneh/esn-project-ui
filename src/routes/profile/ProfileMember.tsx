@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button, Image, Card, Col, Container, ListGroup, Row} from "react-bootstrap";
 import profilePic from "../../images/profile_pic.png";
+import PointsUtility from "../../components/PointsUtility";
+import EncouragementUtility from "../../components/EncouragementUtility";
 
 const ProfileMember = () => {
     const member = {
@@ -9,52 +11,31 @@ const ProfileMember = () => {
         birthday: "1990-05-15",
         phone: "+1234567890",
         email: "marc.dolcet@example.com",
-        points: 30 //  Change this value to test different scenarios
+        points: 0 //  Change this value to test different scenarios
     };
-    const {first_name, last_name, birthday, phone, email, points} = member;
-
-    // Assign level based on points
-    const getLevel = (points: number) => {
-        if (points >= 20) return "👑 Erasmus King";
-        else if (points >= 15) return "🐰 Tutuic's Bestie";
-        else if (points >= 12) return "🎓 TalTech IC Guru";
-        else if (points >= 9) return "🎉 Party Maestro";
-        else if (points >= 7) return "🎈 Event Enthusiast";
-        else if (points >= 3) return "🦋 Social Butterfly";
-        else if (points >= 1) return "🤝 Helping Rookie";
-        else return "🍀 Lucky Newbie";
-    };
-
-    const expressionsOfEncouragement = [
-        "Time to make your first steps to become Erasmus Overlord 🌟",
-        "Psst, want to earn some points? 👀",
-        " Every journey begins with a single step. 👣 You can earn some points helping!",
-        "Check the events to earn your first point!🎉",
-        "🍀 Lucky Newbie! Let's start earning points together!"
-    ];
 
     const getRandomEncouragement = () => {
+        const { expressionsOfEncouragement } = EncouragementUtility;
         const randomIndex = Math.floor(Math.random() * expressionsOfEncouragement.length);
         return expressionsOfEncouragement[randomIndex];
     };
 
     const profileMessage = () => {
-        if (points > 0) {
+        if (member.points > 0) {
             return (
                 <div>
                     <p className="font-weight-bold mb-0">You have:</p>
-                    <h4 className="mb-3">{points} {points === 1 ? 'point' : 'points'}!</h4>
+                    <h4 className="mb-3">{member.points} {member.points === 1 ? 'point' : 'points'}!</h4>
                     <p className="font-weight-bold mb-0">Current point level:</p>
-                    <h4>{getLevel(points)}</h4>
+                    {PointsUtility.getLevel(member.points || 0)}
                 </div>
             );
         } else {
-            const encouragement = getRandomEncouragement();
             return (
                 <>
-                    <p>{first_name}! You don`t have any points yet 🙁
-                        <br/> {encouragement}</p>
-                    <p>Current point level: {getLevel(points)}</p>
+                    <p>{member.first_name}! You don`t have any points yet 🙁
+                        <br/> {getRandomEncouragement()}</p>
+                    <p>{PointsUtility.getLevel(member.points || 0)}</p>
                 </>
             );
         }
@@ -69,7 +50,7 @@ const ProfileMember = () => {
                         <Card>
                             <Card.Body className="text-center">
                                 <Image src={profilePic} alt="Profile Picture" className="profile-img mb-3"/>
-                                <Card.Title>{first_name} {last_name}</Card.Title>
+                                <Card.Title>{member.first_name} {member.last_name}</Card.Title>
                                 <Button variant="primary">Edit Profile</Button>
                             </Card.Body>
                         </Card>
@@ -79,18 +60,18 @@ const ProfileMember = () => {
                             <Card.Body>
                                 <Card.Title className="font-weight-bold">My Info</Card.Title>
                                 <ListGroup>
-                                    <ListGroup.Item><span className="font-weight-bold">Email:</span> {email}
+                                    <ListGroup.Item><span className="font-weight-bold">Email:</span> {member.email}
                                     </ListGroup.Item>
-                                    <ListGroup.Item><span className="font-weight-bold">Phone:</span> {phone}
+                                    <ListGroup.Item><span className="font-weight-bold">Phone:</span> {member.phone}
                                     </ListGroup.Item>
-                                    <ListGroup.Item><span className="font-weight-bold">Birthday:</span> {birthday}
+                                    <ListGroup.Item><span className="font-weight-bold">Birthday:</span> {member.birthday}
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>
                         </Card>
                         <Card className="mt-3">
                             <Card.Body>
-                                <Card.Title className="font-weight-bold">My Points: {points}</Card.Title>
+                                <Card.Title className="font-weight-bold">My Points: {member.points}</Card.Title>
                                 <div className="bg-body-secondary p-4 rounded">
                                     {profileMessage()}
                                 </div>

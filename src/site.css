@@ -373,3 +373,19 @@ button.accept-policy {
     /*color: white;*/
 }
 
+
+.esn-orange,
+.esn-magenta,
+.esn-cyan,
+.esn-green,
+.esn-dark-blue,
+.esn-orange-half,
+.esn-magenta-half,
+.esn-cyan-half,
+.esn-green-half,
+.esn-dark-blue-half{
+    width: 115px;
+    display: inline-block;
+    text-align: center;
+}
+

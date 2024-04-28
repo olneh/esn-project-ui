@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { IMember } from "../../entities/IMember";
-import { EMonths } from "../../enums/EMonths";
+import React, {useState} from 'react';
+import {IMember} from "../../entities/IMember";
+import {EMonths} from "../../enums/EMonths";
+import PointsUtility from "../../components/PointsUtility";
 
 interface MemberTableViewProps {
     searchKeyword: string;
@@ -8,7 +9,7 @@ interface MemberTableViewProps {
     members: IMember[];
 }
 
-const MemberTableView: React.FC<MemberTableViewProps> = ({ searchKeyword, setSearchKeyword, members }) => {
+const MemberTableView: React.FC<MemberTableViewProps> = ({searchKeyword, setSearchKeyword, members}) => {
     const [sortAscending, setSortAscending] = useState<boolean>(true);
 
     const toggleSort = () => {
@@ -16,12 +17,14 @@ const MemberTableView: React.FC<MemberTableViewProps> = ({ searchKeyword, setSea
     };
 
     const filteredMembers = members.filter((member) => {
+        const memberLevel = PointsUtility.getLevel(member.points || 0);
         return (
             member.firstName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             member.lastName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             member.phone?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             member.email?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-            member.points?.toString().includes(searchKeyword)
+            member.points?.toString().includes(searchKeyword) ||
+            memberLevel.toLowerCase().includes(searchKeyword.toLowerCase())
         );
     });
 
@@ -38,17 +41,19 @@ const MemberTableView: React.FC<MemberTableViewProps> = ({ searchKeyword, setSea
             <table className="table table-bordered mt-4">
                 <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Birthday</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">👤 Name</th>
+                    <th scope="col">🎂 Birthday</th>
+                    <th scope="col">📞 Phone Number</th>
+                    <th scope="col">✉️ Email</th>
                     <th
                         scope="col"
-                        style={{ cursor: 'pointer' }}
+                        style={{cursor: 'pointer'}}
                         onClick={toggleSort}
                     >
                         ⭐ Points {sortAscending ? '↑' : '↓'}
                     </th>
+                    <th scope="col">🏆 Level</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -65,6 +70,7 @@ const MemberTableView: React.FC<MemberTableViewProps> = ({ searchKeyword, setSea
                         <td>{member.phone ? member.phone : 'idk 🤷‍♂️'}</td>
                         <td>{member.email ? member.email : 'idk 🤷‍♂️'}</td>
                         <td>{member.points ? member.points : 0}</td>
+                        <td>{PointsUtility.getLevel(member.points || 0)}</td>
                     </tr>
                 ))}
                 </tbody>
