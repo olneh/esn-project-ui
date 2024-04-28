@@ -411,4 +411,15 @@ button.accept-policy {
     object-fit: cover;
 }
 
+/*---------------background colors-------------*/
+
+.react-calendar__tile--now {
+    background-color: var(--esn-cyan) !important; /* Use !important to ensure override */
+    color: white!important;
+}
+
+.react-calendar__tile--active{
+    background-color: var(--esn-dark-blue) !important; /* Use !important to ensure override */
+    color: white!important;
+}
 
