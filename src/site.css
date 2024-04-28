@@ -297,7 +297,6 @@ button.accept-policy {
 .carousel-item-container {
     display: flex;
     justify-content: center;
-    /*align-items: flex-start; !* Align pic to the top *!*/
     height: 500px;
     width: 100%;
     overflow: hidden;
