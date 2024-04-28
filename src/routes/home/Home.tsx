@@ -6,15 +6,12 @@ import pic from "../../images/img.png";
 import {Card, Carousel} from "react-bootstrap";
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import RegisterForEvent from "../points/RegisterForEvent";
-
 
 const Home = () => {
     const navigate = useNavigate();
 
     return (
         <>
-            {/*<Points/>*/}
             <div className="text-center">
                 <h2>
                     <div><img src={esnLogo} alt="esnLogo" height="30"/>Home</div>
