@@ -297,7 +297,7 @@ button.accept-policy {
 .carousel-item-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align pic to the top */
+    /*align-items: flex-start; !* Align pic to the top *!*/
     height: 500px;
     width: 100%;
     overflow: hidden;
@@ -388,4 +388,28 @@ button.accept-policy {
     display: inline-block;
     text-align: center;
 }
+
+
+/*---------------background colors-------------*/
+
+.esn-green-half-bg {
+    background-color: var(--esn-green-half);
+    border-color: var(--esn-green);
+}
+
+.esn-dark-blue-bg {
+    background-color: var(--esn-dark-blue);
+    border-color: var(--esn-dark-blue);
+}
+.esn-dark-blue-half-bg {
+    background-color: var(--esn-dark-blue-half);
+    border-color: var(--esn-dark-blue);
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 
