@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {MemberService} from "../../services/MemberService";
 import {IMember} from "../../entities/IMember";
 import SearchBar from "../../components/SearchBar";
-import MemberBirthdayTableView from "./MemberBirthdayTableView";
+import MemberBirthdayByMonthTableView from "./MemberBirthdayByMonthTableView";
 import HomeBirthdayTableView from "./HomeBirthdayTableView";
 
 const MemberPoints = () => {
@@ -24,12 +24,10 @@ const MemberPoints = () => {
     return (
         <>
             <h1>Birthdays</h1>
-            <MemberBirthdayTableView searchKeyword={searchByMonthKeyword} setSearchKeyword={setSearchByMonthKeyword}
-                                     members={members}/>
+            <MemberBirthdayByMonthTableView searchKeyword={searchByMonthKeyword}
+                                            members={members}/>
             <SearchBar searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword}/>
             <HomeBirthdayTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} members={members}/>
-
-
         </>
     )
 
