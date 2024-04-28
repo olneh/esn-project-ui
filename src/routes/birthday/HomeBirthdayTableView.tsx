@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IMember } from "../../entities/IMember";
+import {Alert} from "react-bootstrap";
 
 interface HomeBirthdayTableViewProps {
     searchKeyword: string;
@@ -27,12 +28,9 @@ const HomeBirthdayTableView: React.FC<HomeBirthdayTableViewProps> = ({ searchKey
         return date.getDate() === today.getDate() && date.getMonth() === today.getMonth();
     };
 
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchKeyword(event.target.value.toLowerCase());
-    };
-
     const filteredMembers = members.filter(member =>
-        member.firstName.toLowerCase().includes(searchKeyword) || member.lastName.toLowerCase().includes(searchKeyword)
+        member.firstName.toLowerCase().includes(searchKeyword) ||
+        member.lastName.toLowerCase().includes(searchKeyword)
     );
 
     const sortedMembers = filteredMembers.sort((a, b) => {
@@ -63,7 +61,9 @@ const HomeBirthdayTableView: React.FC<HomeBirthdayTableViewProps> = ({ searchKey
                     {sortedMembers.map((member) => (
                         <tr key={member.id}
                             >
-                            <td style={isToday(member.birthday) ? {borderColor: '#7ac143'} : undefined}>{isToday(member.birthday) ? `${member.firstName} ${member.lastName}, HAPPY BIRTHDAY! 🎂` : `${member.firstName} ${member.lastName}`}</td>
+                            <td>{isToday(member.birthday) ?
+                            <Alert className={"esn-green-half-bg"}>{member.firstName} {member.lastName}, HAPPY BIRTHDAY! 🎂</Alert>
+                             : <a>&nbsp;${member.firstName} ${member.lastName}</a>}</td>
                             <td>{formatDate(member.birthday)}</td>
                         </tr>
                     ))}
