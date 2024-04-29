@@ -4,17 +4,14 @@ import {EMonths} from "../../enums/EMonths";
 
 interface MemberBirthdayTableViewProps {
     searchKeyword: string;
-    setSearchKeyword: (keyword: string) => void;
     members: IMember[];
 }
 
-// const monthNames = Object.keys(EMonths);
 const months = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
 
-const MemberBirthdayTableView: React.FC<MemberBirthdayTableViewProps> = ({
+const MemberBirthdayByMonthTableView: React.FC<MemberBirthdayTableViewProps> = ({
                                                                              searchKeyword,
-                                                                             setSearchKeyword,
                                                                              members,
                                                                          }) => {
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
@@ -90,4 +87,4 @@ const MemberBirthdayTableView: React.FC<MemberBirthdayTableViewProps> = ({
     );
 };
 
-export default MemberBirthdayTableView;
+export default MemberBirthdayByMonthTableView;
