@@ -1,49 +1,51 @@
-import React, { useEffect, useState } from "react";
-import {MemberEventService} from "../../services/MemberEventService";
+import React, {useEffect, useState} from "react";
 import {MemberEvent} from "../../entities/IMemberEvent";
 import {Card, Col, Container, ListGroup, Row} from "react-bootstrap";
+import {MemberService} from "../../services/MemberService";
+import MemberEventItem from "./MemberEventItem";
 
 
-const ProfileMemberEvents = ({ memberId }: { memberId: number }) => {
+const ProfileMemberEvents = ({memberId}: { memberId: number }) => {
     const [events, setEvents] = useState<MemberEvent[]>([]);
-    const memberEventService = new MemberEventService();
+    const memberService = new MemberService();
 
     useEffect(() => {
         const fetchEvents = async () => {
-            const fetchedEvents = await memberEventService.getEventsForMember(memberId);
-            setEvents(fetchedEvents);
+            try {
+                const currentMember = await memberService.getMemberById(memberId.toString());
+                if (currentMember && currentMember.memberEvents) {
+                    setEvents(currentMember.memberEvents);
+                } else {
+                    setEvents([]);
+                }
+            } catch (error) {
+                console.error('Failed to fetch events:', error);
+                setEvents([]);
+            }
         };
-
         fetchEvents();
     }, [memberId]);
 
     return (
         <Container className="mt-5">
             <Row className="align-items-start">
-                <Col md={4}>
+                <Col md={4}></Col>
+                <Col md={8}>
                     <Card>
                         <Card.Body>
                             <Card.Title className="font-weight-bold">Member Events</Card.Title>
                             <ListGroup>
                                 {events.length > 0 ? (
-                                    events.map((memberEvent) => (
-                                        <ListGroup.Item key={memberEvent.id}>
-                                            <span className="font-weight-bold">Task:</span> {memberEvent.task} <br />
-                                            <span className="font-weight-bold">Points:</span> {memberEvent.points} <br/>
-                                            {memberEvent.points > 0 && memberEvent.memberManager ? (
-                                                <>
-                                                    <span className="font-weight-bold">Assigned by:</span> {memberEvent.memberManager.firstName} <br/>
-                                                </>
-                                            ) : null}
-                                            {/*<span className="font-weight-bold">Event Title:</span> {memberEvent.event?.eventTitle} <br/>*/}
-                                            {/*<span className="font-weight-bold">Event Date:</span> {memberEvent.event?.eventDate ? format(new Date(memberEvent.event.eventDate), 'dd MMMM yyyy HH:mm') : 'N/A'} <br/>*/}
-                                            {/*<span className="font-weight-bold">Attendance Type:</span> {memberEvent.event?.attendanceType} <br/>*/}
-                                            {/*<span className="font-weight-bold">Comment:</span> {memberEvent.event?.comment} <br/>*/}
-                                            {/*<span className="font-weight-bold">Helpers Needed:</span> {memberEvent.event?.helpersNeeded} <br/>*/}
-                                        </ListGroup.Item>
-                                    ))
+                                    events.map((memberEvent) =>
+                                        <>
+                                            <MemberEventItem memberEvent={memberEvent}/>
+                                            <br/>
+                                        </>
+                                    )
                                 ) : (
-                                    <ListGroup.Item>No events found for this member.</ListGroup.Item>
+                                    <ListGroup.Item>
+                                        No events found for this member.
+                                    </ListGroup.Item>
                                 )}
                             </ListGroup>
                         </Card.Body>
@@ -51,6 +53,7 @@ const ProfileMemberEvents = ({ memberId }: { memberId: number }) => {
                 </Col>
             </Row>
         </Container>
+
     );
 };
 

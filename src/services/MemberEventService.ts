@@ -60,14 +60,14 @@ export class MemberEventService extends BaseService {
             const response = await this.axios.get<string[]>(`${eventId}/eventMemberNames`);
             if (response.status === 200) {
                 console.log('Member names fetched successfully.');
-                return response.data; // Return the list of member names
+                return response.data;
             } else {
                 console.error('Failed to fetch member names with status:', response.status);
-                return []; // Return empty array on non-200 response
+                return [];
             }
         } catch (e) {
             console.error('Error fetching member names:', (e as Error).message);
-            return []; // Return empty array on error
+            return [];
         }
     }
 }

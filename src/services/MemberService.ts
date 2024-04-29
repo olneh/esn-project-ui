@@ -20,7 +20,7 @@ export class MemberService extends BaseService {
 
     getMemberById = async (id: string): Promise<IMember | null> => {
         try {
-            const response = await this.axios.get<IMember>(`member/${id}`);
+            const response = await this.axios.get<IMember>(`${id}`);
             return response.data;
         } catch (e) {
             console.log('error: ', (e as Error).message, e);
