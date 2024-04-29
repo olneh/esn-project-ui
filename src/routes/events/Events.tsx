@@ -90,7 +90,7 @@ const Events = () => {
         <Container>
             <Row className="align-items-center my-3">
                 <Col>
-                    <h2>Events</h2>
+                    <h2>📅 Events</h2>
                 </Col>
                 <EventCalendar events={events} onDeleteEvent={onDeleteEvent}/>
                 <Col xs="auto" className="ms-auto">
