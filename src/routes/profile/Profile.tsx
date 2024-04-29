@@ -7,7 +7,7 @@ const Profile = () => {
     const sampleMemberId = 1;
     return (
         <>
-            <h1>Welcome to Your Personal Cabinet</h1>
+            <h1>👤 Your Personal Cabinet</h1>
             <ProfileMember></ProfileMember>
             <ProfileMemberEvents memberId={1}></ProfileMemberEvents>
         </>

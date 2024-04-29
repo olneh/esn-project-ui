@@ -61,8 +61,7 @@ const EventCalendar: React.FC<EventCalenderProps> = ({
                             </div>
                         ))
                     ) : (
-                        <p>No events for chosen day.</p>
-                    )}
+                        <p className="esn-dark-blue-half-bg">&nbsp;No events on the selected day. Choose another date on the calendar to view events.&nbsp;</p>)}
                 </div>
             </div>
         </>

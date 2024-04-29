@@ -67,7 +67,6 @@ const ProfileMember = () => {
 
         return (
             <>
-                <br/>
                 <Container className="mt-5">
                     <Row className="align-items-start">
                         <Col md={4}>
