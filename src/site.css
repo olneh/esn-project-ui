@@ -400,9 +400,15 @@ button.accept-policy {
     background-color: var(--esn-dark-blue);
     border-color: var(--esn-dark-blue);
 }
+
 .esn-dark-blue-half-bg {
-    background-color: var(--esn-dark-blue-half);
-    border-color: var(--esn-dark-blue);
+    background-color: var(--esn-dark-blue-half)!important;
+    border-color: var(--esn-dark-blue)!important;
+}
+
+.esn-dark-blue-half-bg-table {
+    background-color: var(--esn-dark-blue-half)!important;
+    --bs-table-bg: transparent;
 }
 
 .profile-img {

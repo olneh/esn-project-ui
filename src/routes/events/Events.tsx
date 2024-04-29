@@ -7,6 +7,7 @@ import EventsRegistrationFormView from "./EventsRegistrationFormView";
 import EventCalendar from "./EventCalendar";
 import {IFeedback} from "../../entities/IFeedback";
 import {MemberEvent} from "../../entities/IMemberEvent";
+import SearchBar from "../../components/SearchBar";
 
 const Events = () => {
     const eventService = new EventService();
@@ -97,7 +98,8 @@ const Events = () => {
                     <Button variant="primary" onClick={handleShowModal}>Add Event</Button>
                 </Col>
             </Row>
-            <EventTableView searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} events={events}  onDeleteEvent={onDeleteEvent}/>
+            <SearchBar searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword}/>
+            <EventTableView searchKeyword={searchKeyword} events={events}  onDeleteEvent={onDeleteEvent}/>
             <EventsRegistrationFormView show={showModal} onHide={handleHideModal} values={values} handleChange={handleChange} onSubmit={onSubmit} />
         </Container>
     );
