@@ -154,9 +154,6 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                 ))}
                 </tbody>
             </Table>
-            <Button onClick={toggleShowUpcomingOnly} className="mb-2">
-                {showUpcomingOnly ? 'Show All Events' : 'Show Only Upcoming Events'}
-            </Button>
         </>
     );
 }
