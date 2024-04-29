@@ -3,8 +3,6 @@ import {MemberService} from "../../services/MemberService";
 import {IMember} from "../../entities/IMember";
 import SearchBar from "../../components/SearchBar";
 import MemberTableView from "./MemberTableView";
-import MemberBirthdayTableView from "../birthday/MemberBirthdayTableView";
-import PhotoUploadForm from "./PhotoUploadForm";
 
 const MemberPoints = () => {
     const memberService = new MemberService();
