@@ -28,9 +28,9 @@ export class MemberService extends BaseService {
         }
     }
 
-    updateMemberById = async (id: string, memberData: Partial<IMember>): Promise<IMember | null> => {
+    updateMemberById = async (id: string, memberData: IMember): Promise<IMember | null> => {
         try {
-            const response = await this.axios.put<IMember>(`member/${id}`, memberData);
+            const response = await this.axios.put<IMember>(`${id}`, memberData);
             return response.data;
         } catch (e) {
             console.log('error: ', (e as Error).message, e);

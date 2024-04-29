@@ -4,18 +4,22 @@ import profilePic from '../../images/profile_pic.png';
 import PointsUtility from '../../components/PointsUtility';
 import EncouragementUtility from '../../components/EncouragementUtility';
 import EditProfileForm from './EditProfileForm';
+import {MemberService} from "../../services/MemberService";
+import {format} from "date-fns";
 
 const ProfileMember = () => {
-    const [showEditModal, setShowEditModal] = useState(false);
-
-    const member = {
-        first_name: 'Marc',
-        last_name: 'Dolcet Sadurni',
-        birthday: '1990-05-15',
+    const [member, setMember] = useState({
+        id: 3,
+        firstName: 'Marc',
+        lastName: 'Dolcet Sadurni',
+        birthday: new Date('1990-05-15'),
         phone: '+1234567890',
         email: 'marc.dolcet@example.com',
-        points: 0, // Change this value to test different scenarios
-    };
+        memberEvents: [],
+        points: 4 // Change this value to test different scenarios
+    });
+    const [showEditModal, setShowEditModal] = useState(false);
+    const memberService = new MemberService();
 
     const handleEditButtonClick = () => {
         setShowEditModal(true);
@@ -26,12 +30,23 @@ const ProfileMember = () => {
     };
 
     const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
+        setMember(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
-        const handleFormSubmit = () => {
-            setShowEditModal(false);
-        };
+    const handleFormSubmit = () => {
+        setShowEditModal(false);
+        memberService.updateMemberById(member.id.toString(), member)
+            .then(() => {
+                console.log("Member information updated successfully.");
+            })
+            .catch((error) => {
+                console.error("Error updating member information:", error);
+            });
+    };
 
         const getRandomEncouragement = () => {
             const {expressionsOfEncouragement} = EncouragementUtility;
@@ -55,7 +70,7 @@ const ProfileMember = () => {
                 return (
                     <>
                         <p>
-                            {member.first_name}! You don't have any points yet 🙁
+                            {member.firstName}! You don't have any points yet 🙁
                             <br/>
                             {getRandomEncouragement()}
                         </p>
@@ -78,10 +93,10 @@ const ProfileMember = () => {
                                         className="profile-img mb-3"
                                     />
                                     <Card.Title>
-                                        {member.first_name} {member.last_name}
+                                        {member.firstName} {member.lastName}
                                     </Card.Title>
                                     <Button variant="primary" onClick={handleEditButtonClick}>
-                                        Edit Profile
+                                        Edit Profile Info
                                     </Button>
                                 </Card.Body>
                             </Card>
@@ -98,7 +113,7 @@ const ProfileMember = () => {
                                             <span className="font-weight-bold">Phone:</span> {member.phone}
                                         </ListGroup.Item>
                                         <ListGroup.Item>
-                                            <span className="font-weight-bold">Birthday:</span> {member.birthday}
+                                            <span className="font-weight-bold">Birthday:</span> {format(member.birthday, 'yyyy-MM-dd')}
                                         </ListGroup.Item>
                                     </ListGroup>
                                 </Card.Body>
