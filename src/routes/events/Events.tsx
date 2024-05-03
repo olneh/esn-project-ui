@@ -5,8 +5,6 @@ import { EventService } from "../../services/EventService";
 import EventTableView from "./EventTableView";
 import EventsRegistrationFormView from "./EventsRegistrationFormView";
 import EventCalendar from "./EventCalendar";
-import {IFeedback} from "../../entities/IFeedback";
-import {MemberEvent} from "../../entities/IMemberEvent";
 import SearchBar from "../../components/SearchBar";
 
 const Events = () => {
@@ -15,30 +13,14 @@ const Events = () => {
     const [events, setEvents] = useState<IEvent[]>([]);
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
-    const sampleFeedback: IFeedback = {
-        id: 1,
-        comment: 'Great event!',
-        eventId: 101,
-    };
-
-    const sampleMemberEvent: MemberEvent = {
-        id: 1,
-        task: 'Setup chairs',
-        points: 10,
-        eventId: 101,
-        memberReceiverId: 201,
-        memberManagerId: 301,
-    };
-
     const [values, setInput] = useState<IEvent>({
-        id: 101,
-        eventTitle: 'Community Clean-Up',
+        eventTitle: 'Members meeting',
         eventDate: new Date(),
-        attendanceType: 'Open',
-        comment: 'Bring gloves and wear comfortable shoes.',
+        attendanceType: 'Meeting',
+        comment: 'The main topic to discuss - International dinner at .',
         helpersNeeded: 5,
-        feedbackList: [sampleFeedback],
-        memberEvents: [sampleMemberEvent]
+        feedbackList: [],
+        memberEvents: []
     });
 
     const [validationErrors, setValidationErrors] = useState<string[]>([]);
@@ -90,7 +72,7 @@ const Events = () => {
         <Container>
             <Row className="align-items-center my-3">
                 <Col>
-                    <h2>📅 Events</h2>
+                    <h1>📅 Events</h1>
                 </Col>
                 <EventCalendar events={events} onDeleteEvent={onDeleteEvent}/>
                 <Col xs="auto" className="ms-auto">

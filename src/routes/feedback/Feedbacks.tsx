@@ -4,7 +4,7 @@ import FeedbackManager from "./FeedbackManager";
 const Feedbacks = () => {
     return (
         <>
-            <h2>📝Feedbacks</h2>
+            <h1>📝Feedbacks</h1>
             <FeedbackManager></FeedbackManager>
         </>
     );

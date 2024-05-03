@@ -25,7 +25,7 @@ const UpdateEventComponent = ({event}: UpdateEventComponentProps) => {
         e.preventDefault();
         try {
             if (eventData.id !== 0) {
-                await eventService.updateEvent(eventData.id, eventData);
+                await eventService.updateEvent(eventData.id ?? 0, eventData);
                 setIsUpdated(true);
             } else {
                 console.error('No event selected.');

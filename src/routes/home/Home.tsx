@@ -13,9 +13,9 @@ const Home = () => {
     return (
         <>
             <div className="text-center">
-                <h2>
+                <h1>
                     <div><img src={esnLogo} alt="esnLogo" height="30"/>Home</div>
-                </h2>
+                </h1>
             </div>
             <Carousel>
                 <Carousel.Item>

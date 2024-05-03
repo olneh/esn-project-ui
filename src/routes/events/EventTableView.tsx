@@ -111,20 +111,20 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                             <br/>{event.comment}
                         </td>
                         <td>
-                            {memberNames[event.id] && (
+                            {memberNames[event.id ?? 0] && (
                                 <>
                                     {new Date(event.eventDate) > new Date() && (
                                         <p className="esn-orange-half">
-                                            {event.helpersNeeded - (memberNames[event.id]?.length ?? 0) > 0
-                                                ? `Needed: ${event.helpersNeeded - (memberNames[event.id]?.length ?? 0)}`
+                                            {event.helpersNeeded - (memberNames[event.id ?? 0]?.length ?? 0) > 0
+                                                ? `Needed: ${event.helpersNeeded - (memberNames[event.id ?? 0]?.length ?? 0)}`
                                                 : ''
                                             }
                                         </p>
                                     )}
                                     <br/>
-                                    {memberNames[event.id].length > 0 ?
-                                        memberNames[event.id].map((name) => <div key={name}>{name}<br/></div>) :
-                                        new Date(event.eventDate) > new Date() && (event.helpersNeeded - (memberNames[event.id]?.length ?? 0)) > 0
+                                    {memberNames[event.id ?? 0].length > 0 ?
+                                        memberNames[event.id ?? 0].map((name) => <div key={name}>{name}<br/></div>) :
+                                        new Date(event.eventDate) > new Date() && (event.helpersNeeded - (memberNames[event.id ?? 0]?.length ?? 0)) > 0
                                             ? <Alert className={"esn-orange-half"}>Be the first one to join! 🚀</Alert>
                                             : (new Date(event.eventDate) > new Date() &&
                                                 <Alert className={"esn-dark-blue-half"}>No places available</Alert>)
@@ -135,12 +135,12 @@ const EventTableView: React.FC<EventTableViewProps> = ({
 
                         <td>
                             {(new Date(event.eventDate) > new Date()) && (
-                                (event.helpersNeeded - (memberNames[event.id]?.length ?? 0)) > 0 ? (
-                                    <RegisterForEvent eventId={event.id} memberReceiverId={1}/>
+                                (event.helpersNeeded - (memberNames[event.id ?? 0]?.length ?? 0)) > 0 ? (
+                                    <RegisterForEvent eventId={event.id ?? 0}  memberReceiverId={1}/>
                                 ) : ("")
                             )}
                             <br/>
-                            <Button className="esn-cyan" size="sm" onClick={() => toggleVisibility(event.id)}>
+                            <Button className="esn-cyan" size="sm" onClick={() => toggleVisibility(event.id ?? 0)}>
                                 {visibleEventId === event.id ? 'Close Edit' : 'Edit event'}
                             </Button>
                             <br/>

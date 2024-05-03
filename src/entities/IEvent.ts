@@ -2,7 +2,8 @@ import {IBaseEntity} from "./IBaseEntity";
 import {IFeedback} from "./IFeedback";
 import {MemberEvent} from "./IMemberEvent";
 
-export interface IEvent extends IBaseEntity {
+export interface IEvent {
+    id?: number;
     eventTitle: string;
     eventDate: Date;
     attendanceType: string;

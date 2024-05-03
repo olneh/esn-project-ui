@@ -73,7 +73,7 @@ const EventsRegistrationFormView = ({ show, onHide, values, handleChange, onSubm
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={onHide}>Close</Button>
-                        <Button variant="primary" type="submit">Submit</Button>
+                        <Button variant="primary" type="submit" >Submit</Button>
                     </Modal.Footer>
                 </Form>
             </Modal>

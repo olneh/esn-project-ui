@@ -59,7 +59,7 @@ const FeedbackManager: React.FC = () => {
     const handleFeedbackSubmit = async () => {
         if (selectedEvent && feedbackText) {
             const newFeedback: IFeedback = {
-                eventId: selectedEvent.id,
+                eventId: selectedEvent.id ?? 0,
                 comment: feedbackText
             };
 
