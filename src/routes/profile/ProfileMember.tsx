@@ -63,7 +63,7 @@ const ProfileMember = () => {
                             {member.points} {member.points === 1 ? 'point' : 'points'}
                         </h4>
                         <p className="font-weight-bold mb-0">Current point level:</p>
-                        {PointsUtility.getLevel(member.points || 0)}
+                        {PointsUtility.getLevel(member.points ?? 0)}
                     </div>
                 );
             } else {
@@ -74,7 +74,7 @@ const ProfileMember = () => {
                             <br/>
                             {getRandomEncouragement()}
                         </p>
-                        <p>{PointsUtility.getLevel(member.points || 0)}</p>
+                        <p>{PointsUtility.getLevel(member.points ?? 0)}</p>
                     </>
                 );
             }

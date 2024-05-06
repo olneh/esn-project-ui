@@ -17,7 +17,7 @@ const MemberTableView: React.FC<MemberTableViewProps> = ({searchKeyword, setSear
     };
 
     const filteredMembers = members.filter((member) => {
-        const memberLevel = PointsUtility.getLevel(member.points || 0);
+        const memberLevel = PointsUtility.getLevel(member.points ?? 0);
         return (
             member.firstName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             member.lastName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
@@ -30,9 +30,9 @@ const MemberTableView: React.FC<MemberTableViewProps> = ({searchKeyword, setSear
 
     const sortedMembers = [...filteredMembers].sort((a, b) => {
         if (sortAscending) {
-            return (a.points || 0) - (b.points || 0);
+            return (a.points ?? 0) - (b.points ?? 0);
         } else {
-            return (b.points || 0) - (a.points || 0);
+            return (b.points ?? 0) - (a.points ?? 0);
         }
     });
 
@@ -70,7 +70,7 @@ const MemberTableView: React.FC<MemberTableViewProps> = ({searchKeyword, setSear
                         <td>{member.phone ? member.phone : 'idk 🤷‍♂️'}</td>
                         <td>{member.email ? member.email : 'idk 🤷‍♂️'}</td>
                         <td>{member.points ? member.points : 0}</td>
-                        <td>{PointsUtility.getLevel(member.points || 0)}</td>
+                        <td>{PointsUtility.getLevel(member.points ?? 0)}</td>
                     </tr>
                 ))}
                 </tbody>
