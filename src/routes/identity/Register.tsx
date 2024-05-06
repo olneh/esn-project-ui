@@ -1,10 +1,8 @@
 import {MouseEvent, useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {JwtContext} from "../Root";
 import RegisterFormView from "./RegisterFormView";
 import {IRegisterData} from "../../entities/registration/IRegisterData";
 import {IdentityService} from "../../services/IdentityService";
-import {MemberService} from "../../services/MemberService";
 
 const Register = () => {
     const navigate = useNavigate();
