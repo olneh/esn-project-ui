@@ -31,7 +31,7 @@ const Login = () => {
         console.log('onSubmit', event);
         event.preventDefault();
 
-        if (values.email.length == 0 || values.password.length == 0) {
+        if (values.email.length === 0 || values.password.length === 0) {
             setValidationErrors(["Bad input values!"]);
             return;
         }
@@ -40,23 +40,20 @@ const Login = () => {
 
         var jwtData = await identityService.login(values);
 
-        if (jwtData == undefined) {
-            // TODO: get error info
+        if (jwtData === undefined) {
             setValidationErrors(["no jwt"]);
             return;
-        }
-
-        if (setJwtResponse){
-             setJwtResponse(jwtData);
-             navigate("/");
+        } else {
+            if (setJwtResponse){
+                setJwtResponse(jwtData);
+                navigate("/");
+            }
         }
     }
 
     return (
         <LoginFormView
-            // values={values}
-            // values={null}
-            handleChange={handleChange} onSubmit={onSubmit} validationErrors={validationErrors} />
+            handleChange={handleChange} onSubmit={onSubmit} validationErrors={validationErrors}  values={values}/>
     );
 }
 

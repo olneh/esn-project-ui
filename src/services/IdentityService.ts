@@ -1,9 +1,8 @@
-import { IRegisterData } from "../entities/registration/IRegisterData";
-import { ILoginData } from "../entities/registration/ILoginData";
-import { BaseService } from "./BaseService";
-import {Axios} from "axios";
+import {IRegisterData} from "../entities/registration/IRegisterData";
+import {ILoginData} from "../entities/registration/ILoginData";
+import {BaseService} from "./BaseService";
 import {IJWTResponse} from "../entities/registration/IJWTResponse";
-
+import axios, {AxiosResponse} from "axios";
 
 export class IdentityService extends BaseService {
     constructor() {
@@ -14,11 +13,14 @@ export class IdentityService extends BaseService {
         try {
             const response = await this.axios.post<IJWTResponse>('register', data);
 
-            console.log('register response', response);
-            if (response.status === 200) {
+            if (response.status == 201) {
+                console.log("data")
                 return response.data;
             }
-            return response.data;
+            if (response.status == 409) {
+                return undefined;
+            }
+            return undefined;
         } catch (e) {
             console.log('error: ', (e as Error).message);
             return undefined;
@@ -48,9 +50,9 @@ export class IdentityService extends BaseService {
                 'logout',
                 data,
                 {
-                    headers: {
-                        'Authorization': 'Bearer ' + data.jwt
-                    }
+                    // headers: {
+                    //     'Authorization': 'Bearer ' + data.jwt
+                    // }
                 }
             );
 

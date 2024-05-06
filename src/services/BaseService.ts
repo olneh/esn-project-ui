@@ -10,11 +10,11 @@ export abstract class BaseService {
         this.axios = Axios.create(
             {
                 baseURL: BaseService.hostBaseURL + baseUrl,
-                // headers: {
-                //     common: {
-                //         'Content-Type': 'application/json'
-                //     }
-                // }
+                headers: {
+                    common: {
+                        'Content-Type': 'application/json'
+                    }
+                }
             }
         )
 

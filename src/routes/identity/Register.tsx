@@ -4,6 +4,7 @@ import {JwtContext} from "../Root";
 import RegisterFormView from "./RegisterFormView";
 import {IRegisterData} from "../../entities/registration/IRegisterData";
 import {IdentityService} from "../../services/IdentityService";
+import {MemberService} from "../../services/MemberService";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -12,10 +13,10 @@ const Register = () => {
         firstName: "Bob",
         lastName: "Bob",
         birthday: new Date("2023-01-01"),
-        email: "a@a.re",
+        email: "qwerty",
         phone: "+37255544433",
-        password: "passw0rd",
-        confirmPassword: "passw0rd",
+        password: "qwerty",
+        confirmPassword: "qwerty",
     } as IRegisterData);
 
     const [validationErrors, setValidationErrors] = useState([] as string[]);
@@ -28,8 +29,6 @@ const Register = () => {
             setInput({...values, [target.name]: target.value});
         }
     }
-
-    const {jwtResponse, setJwtResponse} = useContext(JwtContext);
 
     const identityService = new IdentityService();
 
@@ -57,25 +56,28 @@ const Register = () => {
             setValidationErrors(["Bad input values! Write your first and last name!"]);
             return;
         }
-        // remove errors
         setValidationErrors([]);
-        console.log("Values" + values);
-        //register the user, get jwt and refresh token
-        var jwtData = await identityService.register(values);
-
-        if (jwtData == undefined) {
-            setValidationErrors(["no jwt"]);
-        } else {
-            if (setJwtResponse) {
-                setJwtResponse(jwtData);
+        const response = await identityService.register(values);
+        console.log('response')
+        console.log(response)
+        console.log('response')
+        try {
+            if (response) {
+                alert("Your profile has been successfully registered! You can now log in.");
+                navigate("/login/");
+            } else {
+                alert("This email is already registered. Please use a different email.");
             }
+        } catch (error) {
+            alert("Registration failed. Please try again.");
+            console.error('Registration error:', error);
         }
-        navigate("/login/");
 
     }
-return (
-    <RegisterFormView values={values} handleChange={handleChange} onSubmit={onSubmit}
-                      validationErrors={validationErrors}/>
-);
+
+    return (
+        <RegisterFormView values={values} handleChange={handleChange} onSubmit={onSubmit}
+                          validationErrors={validationErrors}/>
+    );
 }
 export default Register;

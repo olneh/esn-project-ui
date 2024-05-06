@@ -1,8 +1,9 @@
 import { MouseEvent } from "react";
 import './login.css';
+import {ILoginData} from "../../entities/registration/ILoginData";
 
 interface IProps {
-    // values: ILoginData;
+    values: ILoginData;
 
     validationErrors: string[];
 
@@ -18,7 +19,7 @@ const LoginFormView = (props: IProps) => {
             <h3>Login</h3>
             <hr />
 
-            <ul style={{ 'display': props.validationErrors.length == 0 ? 'none' : '' }}>
+            <ul style={{ 'display': props.validationErrors.length === 0 ? 'none' : '' }}>
                 <li>{props.validationErrors.length > 0 ? props.validationErrors[0] : ''}</li>
             </ul>
 
