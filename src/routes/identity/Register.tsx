@@ -38,45 +38,39 @@ const Register = () => {
         console.log('onSubmit', event);
 
         // error check functions
-        if (values.firstName.length == 0 ||
-            values.lastName.length == 0 ||
-            values.email.length == 0 ||
-            values.phone.length == 0 ||
-            values.password.length == 0) {
+        if (values.firstName.length === 0 ||
+            values.lastName.length === 0 ||
+            values.email.length === 0 ||
+            values.phone.length === 0 ||
+            values.password.length === 0) {
             setValidationErrors(["Bad input values!"]);
             return;
         }
-        if (values.email.length == 0 ||
-            values.password != values.confirmPassword) {
+        if (values.email.length === 0 ||
+            values.password !== values.confirmPassword) {
             setValidationErrors(["Bad password values! Password should be at least one char long and passwords should be equal!"]);
             return;
         }
-        if (values.firstName.length == 0 ||
-            values.lastName.length == 0
+        if (values.firstName.length === 0 ||
+            values.lastName.length === 0
         ) {
             setValidationErrors(["Bad input values! Write your first and last name!"]);
             return;
         }
         // remove errors
         setValidationErrors([]);
-
         console.log("Values" + values);
-
-
-
         //register the user, get jwt and refresh token
         var jwtData = await identityService.register(values);
-        console.log("JWT data" + jwtData?.jwt + jwtData?.refreshToken)
 
         if (jwtData == undefined) {
             setValidationErrors(["no jwt"]);
         } else {
-            setValidationErrors([jwtData.jwt + "it is not undefined"])
-            // if (setJwtResponse) {
-            //     setJwtResponse(jwtData);
-            // }
-            // navigate("/login/");
+            if (setJwtResponse) {
+                setJwtResponse(jwtData);
+            }
         }
+        navigate("/login/");
 
     }
 return (

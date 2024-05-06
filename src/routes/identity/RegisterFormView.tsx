@@ -1,18 +1,15 @@
 import { MouseEvent } from "react";
 import {IRegisterData} from "../../entities/registration/IRegisterData";
 
-interface IProps {
+interface RegisterFormViewProps {
     values: IRegisterData;
-
     validationErrors: string[];
-
     handleChange: (target: EventTarget & HTMLInputElement) => void;
-
     onSubmit: (event: MouseEvent) => void;
 
 }
 
-const RegisterFormView = (props: IProps) => {
+const RegisterFormView = (props: RegisterFormViewProps) => {
     return (
         <form className="form-signin w-100 m-auto">
             <h3>Create a new account</h3>
