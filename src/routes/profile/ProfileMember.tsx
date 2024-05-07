@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import {Button, Image, Card, Col, Container, ListGroup, Row} from 'react-bootstrap';
-import profilePic from '../../images/profile_pic.png';
 import PointsUtility from '../../components/PointsUtility';
 import EncouragementUtility from '../../components/EncouragementUtility';
 import EditProfileForm from './EditProfileForm';
 import {MemberService} from "../../services/MemberService";
-import {format} from "date-fns";
+import ProfileDetails from "./ProfileDetails";
 
 const ProfileMember = () => {
     const [member, setMember] = useState({
@@ -16,7 +14,7 @@ const ProfileMember = () => {
         phone: '+1234567890',
         email: 'marc.dolcet@example.com',
         memberEvents: [],
-        points: 4 // Change this value to test different scenarios
+        points: 20 // Change this value to test different scenarios
     });
     const [showEditModal, setShowEditModal] = useState(false);
     const memberService = new MemberService();
@@ -82,53 +80,11 @@ const ProfileMember = () => {
 
         return (
             <>
-                <Container className="mt-5">
-                    <Row className="align-items-start">
-                        <Col md={4}>
-                            <Card>
-                                <Card.Body className="text-center">
-                                    <Image
-                                        src={profilePic}
-                                        alt="Profile Picture"
-                                        className="profile-img mb-3"
-                                    />
-                                    <Card.Title>
-                                        {member.firstName} {member.lastName}
-                                    </Card.Title>
-                                    <Button variant="primary" onClick={handleEditButtonClick}>
-                                        Edit Profile Info
-                                    </Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={8}>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title className="font-weight-bold">My Info</Card.Title>
-                                    <ListGroup>
-                                        <ListGroup.Item>
-                                            <span className="font-weight-bold">Email:</span> {member.email}
-                                        </ListGroup.Item>
-                                        <ListGroup.Item>
-                                            <span className="font-weight-bold">Phone:</span> {member.phone}
-                                        </ListGroup.Item>
-                                        <ListGroup.Item>
-                                            <span className="font-weight-bold">Birthday:</span> {format(member.birthday, 'yyyy-MM-dd')}
-                                        </ListGroup.Item>
-                                    </ListGroup>
-                                </Card.Body>
-                            </Card>
-                            <Card className="mt-3">
-                                <Card.Body>
-                                    <Card.Title className="font-weight-bold">My Points: {member.points}</Card.Title>
-                                    <div className="bg-body-secondary p-4 rounded">
-                                        {profileMessage()}
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
+                <ProfileDetails
+                    member={member}
+                    handleEditButtonClick={handleEditButtonClick}
+                    profileMessage={profileMessage}
+                />
                 <EditProfileForm
                     show={showEditModal}
                     handleClose={handleModalClose}

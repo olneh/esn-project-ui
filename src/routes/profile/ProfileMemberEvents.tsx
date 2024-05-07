@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from "react";
 import {MemberEvent} from "../../entities/IMemberEvent";
 import {Card, Col, Container, ListGroup, Row} from "react-bootstrap";
-import {MemberService} from "../../services/MemberService";
 import MemberEventItem from "./MemberEventItem";
+import {IMember} from "../../entities/IMember";
 
+interface IProfileMemberEventsProps {
+    member: IMember | null;
+}
 
-const ProfileMemberEvents = ({memberId}: { memberId: number }) => {
+const ProfileMemberEvents: React.FC<IProfileMemberEventsProps> = ({member}) => {
     const [events, setEvents] = useState<MemberEvent[]>([]);
-    const memberService = new MemberService();
 
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const currentMember = await memberService.getMemberById(memberId.toString());
-                if (currentMember && currentMember.memberEvents) {
-                    setEvents(currentMember.memberEvents);
+                if (member && member.memberEvents) {
+                    setEvents(member.memberEvents);
                 } else {
                     setEvents([]);
                 }
@@ -24,7 +25,7 @@ const ProfileMemberEvents = ({memberId}: { memberId: number }) => {
             }
         };
         fetchEvents();
-    }, [memberId]);
+    }, [member]);
 
     return (
         <Container className="mt-5">
@@ -53,7 +54,6 @@ const ProfileMemberEvents = ({memberId}: { memberId: number }) => {
                 </Col>
             </Row>
         </Container>
-
     );
 };
 
