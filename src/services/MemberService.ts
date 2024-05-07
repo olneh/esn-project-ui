@@ -28,6 +28,13 @@ export class MemberService extends BaseService {
         }
     }
 
+
+    getMembersByIds = async (ids: string[]): Promise<IMember[]> => {
+        const promises = ids.map(id => this.getMemberById(id));
+        const members = await Promise.all(promises);
+        return members.filter(member => member !== null) as IMember[];
+    }
+
     updateMemberById = async (id: string, memberData: IMember): Promise<IMember | null> => {
         try {
             const response = await this.axios.put<IMember>(`${id}`, memberData);

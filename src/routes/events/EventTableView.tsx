@@ -7,6 +7,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import RegisterForEvent from "../points/RegisterForEvent";
 import UpdateEvent from "./UpdateEvent";
 import {format, isFuture} from "date-fns";
+import {MemberService} from "../../services/MemberService";
+import {IMember} from "../../entities/IMember";
+import AssignEventPoints from "../points/AssignEventPoints";
 
 interface EventTableViewProps {
     searchKeyword: string;
@@ -21,25 +24,26 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                                                            onDeleteEvent,
                                                        }) => {
     const [sortAscending, setSortAscending] = useState<boolean>(true);
-    const [memberNames, setMemberNames] = useState<{ [eventId: string]: string[] }>({});
+    const [membersByEvent, setMembersByEvent] = useState<{ [eventId: number]: IMember[] }>({});
 
     const memberEventService = new MemberEventService();
+    const memberService = new MemberService();
 
     const [visibleEventId, setVisibleEventId] = useState<number | null>(null);
-    const [showUpcomingOnly, setShowUpcomingOnly] = useState(true);
+    const [showUpcomingOnly, setShowUpcomingOnly] = useState(false);
 
     useEffect(() => {
-        events.forEach(event => {
-            if (event.id) {
-                const eventId = event.id;
-                memberEventService.getMemberNamesForEvent(eventId).then(names => {
-                    setMemberNames(prev => ({...prev, [eventId]: names}));
-                }).catch(error => {
-                    console.error(`Failed to fetch member names for event ${eventId}:`, error);
-                    setMemberNames(prev => ({...prev, [eventId]: []}));
-                });
+        const fetchMembersForEvents = async () => {
+            const membersData: { [eventId: number]: IMember[] } = {};
+            for (const event of events) {
+                if (event.id) {
+                    const memberIds = await memberEventService.getMemberIdsForEvent(event.id);
+                    membersData[event.id] = await memberService.getMembersByIds(memberIds);
+                }
             }
-        });
+            setMembersByEvent(membersData);
+        };
+        fetchMembersForEvents();
     }, [events]);
 
     const toggleSort = () => {
@@ -111,20 +115,28 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                             <br/>{event.comment}
                         </td>
                         <td>
-                            {memberNames[event.id ?? 0] && (
+                            {membersByEvent[event.id ?? 0] && (
                                 <>
                                     {new Date(event.eventDate) > new Date() && (
                                         <p className="esn-orange-half">
-                                            {event.helpersNeeded - (memberNames[event.id ?? 0]?.length ?? 0) > 0
-                                                ? `Needed: ${event.helpersNeeded - (memberNames[event.id ?? 0]?.length ?? 0)}`
+                                            {event.helpersNeeded - (membersByEvent[event.id ?? 0]?.length ?? 0) > 0
+                                                ? `Needed: ${event.helpersNeeded - (membersByEvent[event.id ?? 0]?.length ?? 0)}`
                                                 : ''
                                             }
                                         </p>
                                     )}
                                     <br/>
-                                    {memberNames[event.id ?? 0].length > 0 ?
-                                        memberNames[event.id ?? 0].map((name) => <div key={name}>{name}<br/></div>) :
-                                        new Date(event.eventDate) > new Date() && (event.helpersNeeded - (memberNames[event.id ?? 0]?.length ?? 0)) > 0
+                                    {membersByEvent[event.id ?? 0].length > 0 ?
+                                        membersByEvent[event.id ?? 0].map((member) => (<div key={member.id}>
+
+                                            {new Date(event.eventDate) < new Date() && (
+                                                    <AssignEventPoints eventId={event.id ?? 0}
+                                                                       memberReceiverId={member.id}
+                                                                       memberName={member.firstName + ' ' + member.lastName}/>
+
+                                            )}
+                                        </div>)) :
+                                        new Date(event.eventDate) > new Date() && (event.helpersNeeded - (membersByEvent[event.id ?? 0]?.length ?? 0)) > 0
                                             ? <Alert className={"esn-orange-half"}>Be the first one to join! 🚀</Alert>
                                             : (new Date(event.eventDate) > new Date() &&
                                                 <Alert className={"esn-dark-blue-half"}>No places available</Alert>)
@@ -135,9 +147,10 @@ const EventTableView: React.FC<EventTableViewProps> = ({
 
                         <td>
                             {(new Date(event.eventDate) > new Date()) && (
-                                (event.helpersNeeded - (memberNames[event.id ?? 0]?.length ?? 0)) > 0 ? (
-                                    <RegisterForEvent eventId={event.id ?? 0}  memberReceiverId={1}/>
-                                ) : ("")
+                                (event.helpersNeeded - (membersByEvent[event.id ?? 0]?.length ?? 0)) > 0 ? (
+                                    <>
+                                        <RegisterForEvent eventId={event.id ?? 1} memberReceiverId={1}/>
+                                    </>) : ("")
                             )}
                             <br/>
                             <Button className="esn-cyan" size="sm" onClick={() => toggleVisibility(event.id ?? 0)}>
