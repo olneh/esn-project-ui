@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import {MemberEventService} from "../../services/MemberEventService";
 
 interface PointsProps {
@@ -10,11 +10,6 @@ interface PointsProps {
 
 const RegisterForEvent: React.FC<PointsProps> = ({eventId, memberReceiverId}) => {
     const memberEventService = new MemberEventService();
-
-    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        await memberEventService.addMemberEventPoints();
-    };
 
     const onClick = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
