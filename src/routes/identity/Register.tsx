@@ -1,4 +1,4 @@
-import {MouseEvent, useContext, useState} from "react";
+import {MouseEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import RegisterFormView from "./RegisterFormView";
 import {IRegisterData} from "../../entities/registration/IRegisterData";
@@ -56,9 +56,7 @@ const Register = () => {
         }
         setValidationErrors([]);
         const response = await identityService.register(values);
-        console.log('response')
-        console.log(response)
-        console.log('response')
+        // console.log(response)
         try {
             if (response) {
                 alert("Your profile has been successfully registered! You can now log in.");
