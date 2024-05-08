@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {MemberEvent} from "../../entities/IMemberEvent";
+import {IMemberEvent} from "../../entities/IMemberEvent";
 import {Card, Col, Container, ListGroup, Row} from "react-bootstrap";
 import MemberEventItem from "./MemberEventItem";
 import {IMember} from "../../entities/IMember";
@@ -9,7 +9,7 @@ interface IProfileMemberEventsProps {
 }
 
 const ProfileMemberEvents: React.FC<IProfileMemberEventsProps> = ({member}) => {
-    const [events, setEvents] = useState<MemberEvent[]>([]);
+    const [events, setEvents] = useState<IMemberEvent[]>([]);
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -37,12 +37,12 @@ const ProfileMemberEvents: React.FC<IProfileMemberEventsProps> = ({member}) => {
                             <Card.Title className="font-weight-bold">Member Events</Card.Title>
                             <ListGroup>
                                 {events.length > 0 ? (
-                                    events.map((memberEvent) =>
-                                        <>
+                                    events.map((memberEvent, index) => (
+                                        <React.Fragment key={memberEvent.id || index}>
                                             <MemberEventItem memberEvent={memberEvent}/>
                                             <br/>
-                                        </>
-                                    )
+                                        </React.Fragment>
+                                    ))
                                 ) : (
                                     <ListGroup.Item>
                                         No events found for this member.
