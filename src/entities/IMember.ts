@@ -1,5 +1,5 @@
 import {IBaseEntity} from "./IBaseEntity";
-import {MemberEvent} from "./IMemberEvent";
+import {IMemberEvent} from "./IMemberEvent";
 
 export interface IMember extends IBaseEntity{
     firstName: string,
@@ -10,5 +10,5 @@ export interface IMember extends IBaseEntity{
     email?: string;
     points?: number;
 
-    memberEvents: MemberEvent[];
+    memberEvents: IMemberEvent[];
 }
