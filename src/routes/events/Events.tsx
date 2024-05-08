@@ -17,7 +17,7 @@ const Events = () => {
         eventTitle: 'Members meeting',
         eventDate: new Date(),
         attendanceType: 'Meeting',
-        comment: 'The main topic to discuss - International dinner at .',
+        comment: 'The main topic to discuss - International dinner.',
         helpersNeeded: 5,
         feedbackList: [],
         memberEvents: []
