@@ -1,10 +1,10 @@
 import React from 'react';
 import { ListGroup, Row, Col } from 'react-bootstrap';
 import { format } from 'date-fns';
-import {MemberEvent} from "../../entities/IMemberEvent";
+import {IMemberEvent} from "../../entities/IMemberEvent";
 
 interface MemberEventItemProps {
-    memberEvent: MemberEvent;
+    memberEvent: IMemberEvent;
 }
 
 const MemberEventItem: React.FC<MemberEventItemProps> = ({ memberEvent }) => {
