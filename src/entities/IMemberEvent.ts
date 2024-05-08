@@ -1,12 +1,13 @@
-import {IBaseEntity} from "./IBaseEntity";
 import {IEvent} from "./IEvent";
 import {IMember} from "./IMember";
 
-export interface MemberEvent extends IBaseEntity{
+export interface IMemberEvent{
+    id?: number;
+
     eventId: number;
     memberReceiverId: number;
-    memberManagerId: number;
-    task: string;
+    memberManagerId?: number;
+    task?: string;
     points: number;
 
     event?: IEvent;
