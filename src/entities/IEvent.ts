@@ -1,6 +1,5 @@
-import {IBaseEntity} from "./IBaseEntity";
 import {IFeedback} from "./IFeedback";
-import {MemberEvent} from "./IMemberEvent";
+import {IMemberEvent} from "./IMemberEvent";
 
 export interface IEvent {
     id?: number;
@@ -11,5 +10,5 @@ export interface IEvent {
     helpersNeeded: number;
 
     feedbackList: IFeedback[];
-    memberEvents: MemberEvent[];
+    memberEvents: IMemberEvent[];
 }

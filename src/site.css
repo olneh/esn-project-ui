@@ -42,7 +42,7 @@ html {
 
 .left-column {
     flex: 0 0 20%;
-    margin-right: 20px; /* Adjust the space as needed */
+    margin-right: 20px;
 }
 
 .events-container {
@@ -51,13 +51,16 @@ html {
     flex-wrap: wrap;
     align-content: flex-start;
     gap: 10px;
-    margin-left: 20px; /* Adjust the space as needed */
+    margin-left: 20px;
 }
 
 
 .event-card {
-    flex: 1 1 200px; /* Adjust this basis according to how wide you want each card to be */
-    /* Additional styling for individual event cards */
+    flex: 1 1 200px;
+}
+
+.card-top-space {
+    margin-top: 10px;
 }
 
 
@@ -305,7 +308,7 @@ button.accept-policy {
 .carousel-img {
     width: 100%;
     object-fit: cover; /* Image covers the container */
-    object-position: top; /* Align image to the top */
+    object-position: top; /* Image to the top align */
 }
 
 /*--------------TEST CUSTOM ESN STYLES----------------*/
@@ -420,12 +423,12 @@ button.accept-policy {
 /*---------------background colors-------------*/
 
 .react-calendar__tile--now {
-    background-color: var(--esn-cyan) !important; /* Use !important to ensure override */
+    background-color: var(--esn-cyan) !important;
     color: white!important;
 }
 
 .react-calendar__tile--active{
-    background-color: var(--esn-dark-blue) !important; /* Use !important to ensure override */
+    background-color: var(--esn-dark-blue) !important;
     color: white!important;
 }
 

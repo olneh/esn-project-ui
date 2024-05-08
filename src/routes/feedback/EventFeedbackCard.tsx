@@ -16,7 +16,7 @@ const EventFeedbackCard: React.FC<EventCardProps> = ({ event, index, isEventPass
         <Col xs={12} sm={6} md={4} lg={3} className="d-flex justify-content-center">
             <Card className="mb-3 shadow-sm" style={{ width: '20rem', minHeight: '12rem' }}>
                 <Card.Header>
-                    <Card.Title>
+                    <Card.Title className="card-top-space">
                         {new Date(event.eventDate).getDate()} {EMonths[new Date(event.eventDate).getMonth()]}
                         <OverlayTrigger
                             placement="top"

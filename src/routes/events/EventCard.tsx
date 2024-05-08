@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {Card, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { IEvent } from "../../entities/IEvent";
 
 interface EventCardProps {
@@ -12,7 +12,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onDeleteEvent }) =>
         <>
             <Card className="mb-3 shadow-sm" style={{ width: '20rem' }}>
                 <Card.Header>
-                    <Card.Title>{event.eventTitle}
+                    <Card.Title className="card-top-space">{event.eventTitle}
                         &nbsp;
                         <OverlayTrigger
                             placement="top"
@@ -33,12 +33,6 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onDeleteEvent }) =>
                         <strong>Helpers needed:</strong> {event.helpersNeeded}
                     </Card.Text>
                 </Card.Body>
-                {/*<Card.Footer className="d-flex justify-content-between">*/}
-                {/*    <Button className="esn-magenta" size="sm"*/}
-                {/*            onClick={() => event.id && onDeleteEvent(event.id)}>*/}
-                {/*        Delete Event*/}
-                {/*    </Button>*/}
-                {/*</Card.Footer>*/}
             </Card>
         </>
     );
