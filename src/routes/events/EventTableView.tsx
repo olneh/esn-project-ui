@@ -127,15 +127,17 @@ const EventTableView: React.FC<EventTableViewProps> = ({
                                     )}
                                     <br/>
                                     {membersByEvent[event.id ?? 0].length > 0 ?
-                                        membersByEvent[event.id ?? 0].map((member) => (<div key={member.id}>
-
-                                            {new Date(event.eventDate) < new Date() && (
+                                        membersByEvent[event.id ?? 0].map((member) => (
+                                            <div key={member.id}>
+                                                {new Date(event.eventDate) > new Date() && (
+                                                    <span>{member.firstName} {member.lastName}</span>
+                                                )}
+                                                {new Date(event.eventDate) < new Date() && (
                                                     <AssignEventPoints eventId={event.id ?? 0}
                                                                        memberReceiverId={member.id}
                                                                        memberName={member.firstName + ' ' + member.lastName}/>
-
-                                            )}
-                                        </div>)) :
+                                                )}
+                                            </div>)) :
                                         new Date(event.eventDate) > new Date() && (event.helpersNeeded - (membersByEvent[event.id ?? 0]?.length ?? 0)) > 0
                                             ? <Alert className={"esn-orange-half"}>Be the first one to join! 🚀</Alert>
                                             : (new Date(event.eventDate) > new Date() &&
