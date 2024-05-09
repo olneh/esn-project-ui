@@ -1,63 +1,36 @@
 import {BaseService} from "./BaseService";
+import {MemberEventDTO} from "../entities/MemberEventDto";
 
 export class MemberEventService extends BaseService {
     constructor() {
         super('memberEvents/');
     }
 
-    async addMemberEventPoints(): Promise<void> {
-        const event_id = 1;
-        const member_manager_id = 1;
-        const member_receiver_id = 2;
-        const points = 100;
-        const task = "Complete the task";
-
-        const postData = new URLSearchParams();
-        postData.append('event_id', event_id.toString());
-        postData.append('member_manager_id', member_manager_id.toString());
-        postData.append('member_receiver_id', member_receiver_id.toString());
-        postData.append('points', points.toString());
-        postData.append('task', task);
-
+    async addMemberEventPoints(data: MemberEventDTO): Promise<void> {
         try {
-            const response = await this.axios.post<void>('addPoints', postData.toString(), {
-                // headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded'
-                // }
-            });
+            const response = await this.axios.post<void>('addPoints', data);
             if (response.status === 200) {
-                console.log('Member event added successfully.');
+                console.log('Member event points added successfully.');
             }
         } catch (e) {
-            console.error('Error adding member event:', (e as Error).message);
+            console.error('Error registering member event:', (e as Error).message);
         }
     }
 
-    async registerMemberEvent(eventId: number, memberReceiverId: number): Promise<void> {
-        const task = "Complete the task";
-
-        const postData = new URLSearchParams();
-        postData.append('event_id', eventId.toString());
-        postData.append('member_receiver_id', memberReceiverId.toString());
-        postData.append('task', task);
-
+    async registerMemberEvent(data: MemberEventDTO): Promise<void> {
         try {
-            const response = await this.axios.post<void>('registerForEvent', postData.toString(), {
-                // headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded'
-                // }
-            });
+            const response = await this.axios.post<void>('registerForEvent', data);
             if (response.status === 200) {
-                console.log('Member event added successfully.');
+                console.log('Member event registered successfully.');
             }
         } catch (e) {
-            console.error('Error adding member event:', (e as Error).message);
+            console.error('Error registering member event:', (e as Error).message);
         }
     }
 
-    async getMemberNamesForEvent(eventId: number): Promise<string[]> {
+    async getMemberIdsForEvent(eventId: number): Promise<string[]> {
         try {
-            const response = await this.axios.get<string[]>(`${eventId}/eventMemberNames`);
+            const response = await this.axios.get<string[]>(`${eventId}/eventMemberIds`);
             if (response.status === 200) {
                 console.log('Member names fetched successfully.');
                 return response.data;

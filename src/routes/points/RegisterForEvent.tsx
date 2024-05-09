@@ -9,21 +9,29 @@ interface PointsProps {
 
 
 const RegisterForEvent: React.FC<PointsProps> = ({eventId, memberReceiverId}) => {
-    const memberEventService = new MemberEventService();
+        const memberEventService = new MemberEventService();
 
-    const onClick = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        await memberEventService.registerMemberEvent(eventId, memberReceiverId);
-        window.location.reload();
-    };
+        const onClick = async (event: React.FormEvent<HTMLFormElement>) => {
+                event.preventDefault();
 
-    return (
-        <Button className="esn-dark-blue" size="sm"
-                onClick={(e) => onClick(e as any)}
-        >
-            Register as user 1
-        </Button>
-    );
-};
+                await memberEventService.registerMemberEvent({
+                    event: {id: eventId},
+                    memberReceiver: {id: memberReceiverId},
+                    points: 0,
+                    task: "Volunteering"
+                });
+                // alert("You registered for the event");
+                window.location.reload();
+            }
+        ;
+
+        return (
+            <Button className="esn-dark-blue" size="sm"
+                    onClick={(e) => onClick(e as any)}>
+                Register
+            </Button>
+        );
+    }
+;
 
 export default RegisterForEvent;

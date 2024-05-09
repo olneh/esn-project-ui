@@ -14,7 +14,13 @@ const AssignEventPoints: React.FC<AssignEventPointsProps> = ({eventId, memberRec
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        await memberEventService.addMemberEventPoints();
+        await memberEventService.addMemberEventPoints({
+            event: { id: eventId },
+            memberReceiver: { id: memberReceiverId },
+            memberManager: {id: 1},
+            points: 1,
+            task: "Volunteering"
+        });
     };
 
     return (
