@@ -5,7 +5,7 @@ export abstract class BaseService {
 
     protected axios: AxiosInstance;
 
-    constructor(baseUrl: string) {
+    protected constructor(baseUrl: string) {
 
         this.axios = Axios.create(
             {
