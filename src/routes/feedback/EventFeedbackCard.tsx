@@ -1,7 +1,6 @@
-// EventCard.tsx
 import React from 'react';
 import {Card, Col, ListGroup, Button, OverlayTrigger, Tooltip, Alert} from 'react-bootstrap';
-import {IEvent} from '../../entities/IEvent';  // Import the interface that describes the event structure
+import {IEvent} from '../../entities/IEvent';
 import {EMonths} from '../../enums/EMonths';
 
 interface EventCardProps {
