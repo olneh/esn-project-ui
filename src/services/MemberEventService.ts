@@ -1,5 +1,6 @@
 import {BaseService} from "./BaseService";
 import {MemberEventDTO} from "../entities/MemberEventDto";
+import {IMemberEvent} from "../entities/IMemberEvent";
 
 export class MemberEventService extends BaseService {
     constructor() {
@@ -43,4 +44,14 @@ export class MemberEventService extends BaseService {
             return [];
         }
     }
+
+    async getMemberEventsByMemberId(memberReceiverId: number): Promise<IMemberEvent[]> {
+        try {
+            const response = await this.axios.get(`${memberReceiverId}/memberEvents`);
+            return response.data;
+        } catch (error) {
+            console.error('Failed to fetch member events', error);
+            throw error;
+        }
+    };
 }
