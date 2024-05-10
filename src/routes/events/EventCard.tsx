@@ -4,10 +4,9 @@ import { IEvent } from "../../entities/IEvent";
 
 interface EventCardProps {
     event: IEvent;
-    onDeleteEvent: (eventId: number) => void;
 }
 
-export const EventCard: React.FC<EventCardProps> = ({ event, onDeleteEvent }) => {
+export const EventCard: React.FC<EventCardProps> = ({ event }) => {
     return (
         <>
             <Card className="mb-3 shadow-sm" style={{ width: '20rem' }}>

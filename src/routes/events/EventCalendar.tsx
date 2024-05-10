@@ -9,10 +9,7 @@ interface EventCalenderProps {
     onDeleteEvent: (eventId: number) => Promise<void>;
 }
 
-const EventCalendar: React.FC<EventCalenderProps> = ({
-                                                         events,
-                                                         onDeleteEvent,
-                                                     }) => {
+const EventCalendar: React.FC<EventCalenderProps> = ({events}) => {
 
     const isEventDay = (date: Date): boolean => {
         return events.some(event => {
@@ -52,12 +49,11 @@ const EventCalendar: React.FC<EventCalenderProps> = ({
                         value={selectedDate}
                     />
                 </div>
-
                 <div className="events-container">
                     {eventsForSelectedDate.length > 0 ? (
                         eventsForSelectedDate.map(event => (
                             <div className="event-card" key={event.id}>
-                                <EventCard event={event} onDeleteEvent={onDeleteEvent}/>
+                                <EventCard event={event}/>
                             </div>
                         ))
                     ) : (
