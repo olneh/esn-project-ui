@@ -1,8 +1,8 @@
 // EventCard.tsx
 import React from 'react';
-import { Card, Col, ListGroup, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
-import { IEvent } from '../../entities/IEvent';  // Import the interface that describes the event structure
-import { EMonths } from '../../enums/EMonths';
+import {Card, Col, ListGroup, Button, OverlayTrigger, Tooltip, Alert} from 'react-bootstrap';
+import {IEvent} from '../../entities/IEvent';  // Import the interface that describes the event structure
+import {EMonths} from '../../enums/EMonths';
 
 interface EventCardProps {
     event: IEvent;
@@ -11,10 +11,10 @@ interface EventCardProps {
     onAddFeedback: (event: IEvent) => void;
 }
 
-const EventFeedbackCard: React.FC<EventCardProps> = ({ event, index, isEventPassed, onAddFeedback }) => {
+const EventFeedbackCard: React.FC<EventCardProps> = ({event, index, isEventPassed, onAddFeedback}) => {
     return (
         <Col xs={12} sm={6} md={4} lg={3} className="d-flex justify-content-center">
-            <Card className="mb-3 shadow-sm" style={{ width: '20rem', minHeight: '12rem' }}>
+            <Card className="mb-3 shadow-sm" style={{width: '20rem', minHeight: '12rem'}}>
                 <Card.Header>
                     <Card.Title className="card-top-space">
                         {new Date(event.eventDate).getDate()} {EMonths[new Date(event.eventDate).getMonth()]}
@@ -26,7 +26,7 @@ const EventFeedbackCard: React.FC<EventCardProps> = ({ event, index, isEventPass
                         >
                             <i className="bi bi-info-circle ms-2"></i>
                         </OverlayTrigger>
-                        <br />
+                        <br/>
                         {event.eventTitle}
                     </Card.Title>
                 </Card.Header>
@@ -37,7 +37,9 @@ const EventFeedbackCard: React.FC<EventCardProps> = ({ event, index, isEventPass
                                 <ListGroup.Item key={feedbackIndex}>{feedback.comment}</ListGroup.Item>
                             ))
                         ) : (
-                            <ListGroup.Item>No feedback available.</ListGroup.Item>
+                            <ListGroup.Item>
+                                <Alert className={"esn-orange-half-bg"}>Be the first to give feedback! 💬</Alert>
+                            </ListGroup.Item>
                         )}
                     </ListGroup>
                 </Card.Body>

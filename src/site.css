@@ -409,6 +409,11 @@ button.accept-policy {
     border-color: var(--esn-dark-blue)!important;
 }
 
+.esn-orange-half-bg {
+    background-color: var(--esn-orange-half)!important;
+    border-color: var(--esn-orange)!important;
+}
+
 .esn-dark-blue-half-bg-table {
     background-color: var(--esn-dark-blue-half)!important;
     --bs-table-bg: transparent;
