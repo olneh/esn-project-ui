@@ -48,38 +48,44 @@ const Home = () => {
                     </div>
                     <div className="flex-container">
                         <div className="column" onClick={() => navigate('/profile')}>
-                <span className="feature-content">
-                    <p className="feature-title">👤 My Profile</p>
-                    <p>Check out your personal space! Customize your profile info to always stay updated!</p>
-                </span>
+                            <span className="feature-content">
+                                <p className="feature-title">👤 My Profile</p>
+                                <p>Check out your personal space! Customize your profile info to always stay updated!</p>
+                            </span>
                         </div>
 
                         <div className="column" onClick={() => navigate('/points')}>
-                <span className="feature-content">
-                    <p className="feature-title">⭐ Rating Points</p>
-                    <p>Earn your points! Join events or share thoughts to earn points. Show your influence and level up your status!</p>
-                </span>
+                            <span className="feature-content">
+                                <p className="feature-title">⭐ Rating Points</p>
+                                <p>Earn your points! Join events or share thoughts to earn points. Show your influence and level up your status!</p>
+                            </span>
                         </div>
+                        <div>
+                            <div className="column" onClick={() => navigate('/events')}>
+                                <span className="feature-content">
+                                <p className="feature-title">📅 Events</p>
+                                <p>Let's have fun together! Check out our calendar of meetings and gatherings. Meet new friends and make memories!</p>
+                                </span>
+                            </div>
+                            <div className="column" onClick={() => navigate('/feedback')}>
+                                <span className="feature-content">
+                                <p className="feature-title">📝 Feedbacks</p>
+                                <p> Share your thoughts on recent events to help us make them better!</p>
 
-                        <div className="column" onClick={() => navigate('/events')}>
-                <span className="feature-content">
-                    <p className="feature-title">📅 Events</p>
-                    <p>Let's have fun together! Check out our calendar of meetings and gatherings. Meet new friends and make memories!</p>
-                </span>
+                                </span>
+                            </div>
                         </div>
-
                         <div className="column" onClick={() => navigate('/birthdays')}>
-                <span className="feature-content">
-                    <p className="feature-title">🎂 Birthday Calendar</p>
-                    <p>Celebrate with us! Keep track of birthdays and send warm wishes. Let's make every day special!</p>
-                </span>
+                            <span className="feature-content">
+                                <p className="feature-title">🎂 Birthday Calendar</p>
+                                <p>Celebrate with us! Keep track of birthdays and send warm wishes. Let's make every day special!</p>
+                            </span>
                         </div>
                     </div>
                 </Card.Body>
             </Card>
         </>
-    )
-        ;
+    );
 };
 
 export default Home;
