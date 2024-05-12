@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {EventService} from "../../services/EventService";
-import {IEvent} from "../../entities/IEvent";
-import {Button, Form} from 'react-bootstrap';
-import {format} from "date-fns";
+import React, { useState } from 'react';
+import { EventService } from "../../services/EventService";
+import { IEvent } from "../../entities/IEvent";
+import { Button, Form } from 'react-bootstrap';
+import { format } from "date-fns";
 
 interface UpdateEventComponentProps {
     event: IEvent;
@@ -27,6 +27,8 @@ const UpdateEventComponent = ({event}: UpdateEventComponentProps) => {
             if (eventData.id !== 0) {
                 await eventService.updateEvent(eventData.id ?? 0, eventData);
                 setIsUpdated(true);
+                alert("Event updated successfully.");
+                window.location.reload();
             } else {
                 console.error('No event selected.');
             }
