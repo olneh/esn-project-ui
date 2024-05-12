@@ -34,7 +34,6 @@ const Register = () => {
         event.preventDefault();
         console.log('onSubmit', event);
 
-        // error check functions
         if (values.firstName.length === 0 ||
             values.lastName.length === 0 ||
             values.email.length === 0 ||
@@ -56,7 +55,6 @@ const Register = () => {
         }
         setValidationErrors([]);
         const response = await identityService.register(values);
-        // console.log(response)
         try {
             if (response) {
                 alert("Your profile has been successfully registered! You can now log in.");
