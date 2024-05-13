@@ -23,7 +23,9 @@ const Login = () => {
         setInput({ ...values, [target.name]: target.value });
     }
 
-    const {jwtResponse, setJwtResponse} = useContext(JwtContext);
+    const {
+        // jwtResponse,
+        setJwtResponse} = useContext(JwtContext);
 
     const identityService = new IdentityService();
 
@@ -38,7 +40,7 @@ const Login = () => {
         // remove errors
         setValidationErrors([]);
 
-        var data = await identityService.login(values);
+        const data = await identityService.login(values);
 
         if (data === undefined) {
             setValidationErrors(["no response"]);
