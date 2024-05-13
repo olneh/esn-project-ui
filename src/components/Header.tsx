@@ -1,5 +1,5 @@
-import esnStar from "../images/ESN star.png"
-import esnLogo from "../images/ESN logo full.png"
+import esnStar from "../images/ESN_star.png"
+import esnLogo from "../images/ESN_logo_full.png"
 import {Link} from "react-router-dom";
 
 const Header = () => {

@@ -9,10 +9,10 @@ const Register = () => {
 
     const [values, setInput] = useState({
         firstName: "Bob",
-        lastName: "Bob",
-        birthday: new Date("2023-01-01"),
-        email: "qwerty",
-        phone: "+37255544433",
+        lastName: "Wilson",
+        birthday: new Date("1995-05-20"),
+        email: "bob.wilson@example.com",
+        phone: "+1444567890",
         password: "qwerty",
         confirmPassword: "qwerty",
     } as IRegisterData);

@@ -1,5 +1,5 @@
-import esnLogo from "../../images/ESN star.png";
-import esnGroup from "../../images/ESN group photo.png";
+import esnLogo from "../../images/ESN_star.png";
+import esnGroup from "../../images/ESN_group_photo.png";
 import pic1 from "../../images/img_1.png";
 import pic2 from "../../images/img_2.png";
 import pic from "../../images/img.png";

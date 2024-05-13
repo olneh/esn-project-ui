@@ -5,13 +5,13 @@ import { ILoginData } from "../../entities/registration/ILoginData";
 import { JwtContext } from "../Root";
 import {IdentityService} from "../../services/IdentityService";
 
-
+// to be improved with actual jwt data
 const Login = () => {
     const navigate = useNavigate();
 
     const [values, setInput] = useState({
-        email: "admin@app.com",
-        password: "Foo.bar.1",
+        email: "marc.dolcet@example.com",
+        password: "qwerty",
     } as ILoginData);
 
     const [validationErrors, setValidationErrors] = useState([] as string[]);
@@ -38,14 +38,14 @@ const Login = () => {
         // remove errors
         setValidationErrors([]);
 
-        var jwtData = await identityService.login(values);
+        var data = await identityService.login(values);
 
-        if (jwtData === undefined) {
-            setValidationErrors(["no jwt"]);
+        if (data === undefined) {
+            setValidationErrors(["no response"]);
             return;
         } else {
             if (setJwtResponse){
-                setJwtResponse(jwtData);
+                setJwtResponse(data);
                 navigate("/");
             }
         }
