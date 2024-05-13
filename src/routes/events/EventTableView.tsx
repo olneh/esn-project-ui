@@ -94,10 +94,9 @@ const EventTableView: React.FC<EventTableViewProps> = ({
             <Table striped={false} bordered hover className="mt-4">
                 <thead>
                 <tr>
-                    <th>When?</th>
+                    <th scope="col" style={{cursor: 'pointer'}} onClick={toggleSort}>When? {sortAscending ? ' ↑' : ' ↓'}</th>
                     <th>Event</th>
-                    <th scope="col" style={{cursor: 'pointer'}} onClick={toggleSort}>Helpers
-                        {sortAscending ? ' ↑' : ' ↓'}</th>
+                    <th>Helpers</th>
                     <th></th>
                 </tr>
                 </thead>
